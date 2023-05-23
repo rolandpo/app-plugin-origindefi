@@ -1,0 +1,558 @@
+     VMA      LMA     Size Align Out     In      Symbol
+       0        0        0     1 PAGE_SIZE = 256
+       0        0        0     1 STACK_SIZE = 1500
+       0        0        0     1 END_STACK = ORIGIN ( SRAM ) + LENGTH ( SRAM )
+c0de0000 c0de0000     1500     4 .text
+c0de0000 c0de0000        0     1         _text = .
+c0de0000 c0de0000        0     1         _nvram_start = .
+c0de0000 c0de0000       a0     4         build/nanox/obj/main.o:(.boot)
+c0de0000 c0de0000        0     1                 $t.5
+c0de0001 c0de0001       a0     1                 main
+c0de0098 c0de0098        0     1                 $d.6
+c0de00a0 c0de00a0       d6     2         build/nanox/obj/eth_internals.o:(.text.adjustDecimals)
+c0de00a0 c0de00a0        0     1                 $t.9
+c0de00a1 c0de00a1       d6     1                 adjustDecimals
+c0de0178 c0de0178       d0     4         build/nanox/obj/eth_internals.o:(.text.uint256_to_decimal)
+c0de0178 c0de0178        0     1                 $t.10
+c0de0179 c0de0179       d0     1                 uint256_to_decimal
+c0de0244 c0de0244        0     1                 $d.11
+c0de0248 c0de0248       1e     2         build/nanox/obj/eth_internals.o:(.text.allzeroes)
+c0de0248 c0de0248        0     1                 $t.12
+c0de0249 c0de0249       1e     1                 allzeroes
+c0de0266 c0de0266       8c     2         build/nanox/obj/eth_internals.o:(.text.amountToString)
+c0de0266 c0de0266        0     1                 $t.13
+c0de0267 c0de0267       8c     1                 amountToString
+c0de02f4 c0de02f4       88     4         build/nanox/obj/handle_finalize.o:(.text.handle_finalize)
+c0de02f4 c0de02f4        0     1                 $t.0
+c0de02f5 c0de02f5       88     1                 handle_finalize
+c0de036c c0de036c        0     1                 $d.1
+c0de037c c0de037c       30     4         build/nanox/obj/handle_finalize.o:(.text.printf_hex_array)
+c0de037c c0de037c        0     1                 $t.2
+c0de037d c0de037d       30     1                 printf_hex_array
+c0de03a4 c0de03a4        0     1                 $d.3
+c0de03ac c0de03ac       9c     4         build/nanox/obj/handle_init_contract.o:(.text.handle_init_contract)
+c0de03ac c0de03ac        0     1                 $t.0
+c0de03ad c0de03ad       9c     1                 handle_init_contract
+c0de043c c0de043c        0     1                 $d.1
+c0de0448 c0de0448       ec     4         build/nanox/obj/handle_provide_parameter.o:(.text.handle_provide_parameter)
+c0de0448 c0de0448        0     1                 $t.0
+c0de0449 c0de0449       ec     1                 handle_provide_parameter
+c0de0520 c0de0520        0     1                 $d.1
+c0de0534 c0de0534       34     4         build/nanox/obj/handle_provide_parameter.o:(.text.printf_hex_array)
+c0de0534 c0de0534        0     1                 $t.2
+c0de0535 c0de0535       34     1                 printf_hex_array
+c0de0560 c0de0560        0     1                 $d.3
+c0de0568 c0de0568       30     4         build/nanox/obj/handle_provide_parameter.o:(.text.handle_token_sent)
+c0de0568 c0de0568        0     1                 $t.4
+c0de0569 c0de0569       30     1                 handle_token_sent
+c0de0594 c0de0594        0     1                 $d.5
+c0de0598 c0de0598       d0     4         build/nanox/obj/handle_provide_token.o:(.text.handle_provide_token)
+c0de0598 c0de0598        0     1                 $t.0
+c0de0599 c0de0599       d0     1                 handle_provide_token
+c0de0654 c0de0654        0     1                 $d.1
+c0de0668 c0de0668       60     4         build/nanox/obj/handle_query_contract_id.o:(.text.handle_query_contract_id)
+c0de0668 c0de0668        0     1                 $t.0
+c0de0669 c0de0669       60     1                 handle_query_contract_id
+c0de06b4 c0de06b4        0     1                 $d.1
+c0de06c8 c0de06c8      1bc     4         build/nanox/obj/handle_query_contract_ui.o:(.text.handle_query_contract_ui)
+c0de06c8 c0de06c8        0     1                 $t.0
+c0de06c9 c0de06c9      1bc     1                 handle_query_contract_ui
+c0de0854 c0de0854        0     1                 $d.1
+c0de0884 c0de0884       74     4         build/nanox/obj/main.o:(.text.dispatch_plugin_calls)
+c0de0884 c0de0884        0     1                 $t.0
+c0de0885 c0de0885       74     1                 dispatch_plugin_calls
+c0de08f4 c0de08f4        0     1                 $d.1
+c0de08f8 c0de08f8       1c     4         build/nanox/obj/main.o:(.text.call_app_ethereum)
+c0de08f8 c0de08f8        0     1                 $t.3
+c0de08f9 c0de08f9       1c     1                 call_app_ethereum
+c0de0910 c0de0910        0     1                 $d.4
+c0de0914 c0de0914        a     2         build/nanox/obj/os.o:(.text.os_boot)
+c0de0914 c0de0914        0     1                 $t.0
+c0de0915 c0de0915        a     1                 os_boot
+c0de0920 c0de0920       1c     4         build/nanox/obj/os.o:(.text.os_longjmp)
+c0de0920 c0de0920        0     1                 $t.3
+c0de0921 c0de0921       1c     1                 os_longjmp
+c0de0938 c0de0938        0     1                 $d.4
+c0de093c c0de093c       22     2         build/nanox/obj/os_io_seproxyhal.o:(.text.mcu_usb_prints)
+c0de093c c0de093c        0     1                 $t.54
+c0de093d c0de093d       22     1                 mcu_usb_prints
+c0de0960 c0de0960      300     4         build/nanox/obj/os_printf.o:(.text.mcu_usb_printf)
+c0de0960 c0de0960        0     1                 $t.0
+c0de0961 c0de0961      300     1                 mcu_usb_printf
+c0de0961 c0de0961      300     1                 screen_printf
+c0de0c44 c0de0c44        0     1                 $d.1
+c0de0c60 c0de0c60        e     2         build/nanox/obj/svc_call.o:(.text)
+c0de0c60 c0de0c60        0     1                 $t
+c0de0c61 c0de0c61        0     1                 SVC_Call
+c0de0c68 c0de0c68        0     1                 exception
+c0de0c6e c0de0c6e       12     2         build/nanox/obj/syscalls.o:(.text.get_api_level)
+c0de0c6e c0de0c6e        0     1                 $t.0
+c0de0c6f c0de0c6f       12     1                 get_api_level
+c0de0c80 c0de0c80       18     4         build/nanox/obj/syscalls.o:(.text.os_lib_call)
+c0de0c80 c0de0c80        0     1                 $t.221
+c0de0c81 c0de0c81       18     1                 os_lib_call
+c0de0c94 c0de0c94        0     1                 $d.222
+c0de0c98 c0de0c98       10     2         build/nanox/obj/syscalls.o:(.text.os_lib_end)
+c0de0c98 c0de0c98        0     1                 $t.223
+c0de0c99 c0de0c99       10     1                 os_lib_end
+c0de0ca8 c0de0ca8       18     4         build/nanox/obj/syscalls.o:(.text.os_sched_exit)
+c0de0ca8 c0de0ca8        0     1                 $t.251
+c0de0ca9 c0de0ca9       18     1                 os_sched_exit
+c0de0cbc c0de0cbc        0     1                 $d.252
+c0de0cc0 c0de0cc0       14     4         build/nanox/obj/syscalls.o:(.text.io_seph_send)
+c0de0cc0 c0de0cc0        0     1                 $t.259
+c0de0cc1 c0de0cc1       14     1                 io_seph_send
+c0de0cd0 c0de0cd0        0     1                 $d.260
+c0de0cd4 c0de0cd4       10     2         build/nanox/obj/syscalls.o:(.text.try_context_get)
+c0de0cd4 c0de0cd4        0     1                 $t.268
+c0de0cd5 c0de0cd5       10     1                 try_context_get
+c0de0ce4 c0de0ce4       18     4         build/nanox/obj/syscalls.o:(.text.try_context_set)
+c0de0ce4 c0de0ce4        0     1                 $t.269
+c0de0ce5 c0de0ce5       18     1                 try_context_set
+c0de0cf8 c0de0cf8        0     1                 $d.270
+c0de0cfc c0de0cfc      114     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_udivsi3.o):(.text)
+c0de0cfc c0de0cfc        0     1                 $t
+c0de0cfc c0de0cfc        0     1                 .udivsi3_skip_div0_test
+c0de0cfd c0de0cfd      10a     1                 __udivsi3
+c0de0cfd c0de0cfd        0     1                 __aeabi_uidiv
+c0de0e09 c0de0e09        8     1                 __aeabi_uidivmod
+c0de0e10 c0de0e10        4     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_dvmd_tls.o):(.text)
+c0de0e10 c0de0e10        0     1                 $t
+c0de0e11 c0de0e11        2     1                 __aeabi_idiv0
+c0de0e11 c0de0e11        2     1                 __aeabi_ldiv0
+c0de0e14 c0de0e14       54     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_muldi3.o):(.text)
+c0de0e14 c0de0e14        0     1                 $t
+c0de0e15 c0de0e15       54     1                 __muldi3
+c0de0e15 c0de0e15       54     1                 __aeabi_lmul
+c0de0e68 c0de0e68        c     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memclr.o):(.text.__aeabi_memclr)
+c0de0e68 c0de0e68        0     1                 $t
+c0de0e69 c0de0e69        a     1                 __aeabi_memclr
+c0de0e69 c0de0e69        a     1                 __aeabi_memclr8
+c0de0e69 c0de0e69        a     1                 __aeabi_memclr4
+c0de0e74 c0de0e74        8     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memcpy.o):(.text.__aeabi_memcpy)
+c0de0e74 c0de0e74        0     1                 $t
+c0de0e75 c0de0e75        8     1                 __aeabi_memcpy
+c0de0e75 c0de0e75        8     1                 __aeabi_memcpy8
+c0de0e75 c0de0e75        8     1                 __aeabi_memcpy4
+c0de0e7c c0de0e7c        8     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memmove.o):(.text.__aeabi_memmove)
+c0de0e7c c0de0e7c        0     1                 $t
+c0de0e7d c0de0e7d        8     1                 __aeabi_memmove
+c0de0e7d c0de0e7d        8     1                 __aeabi_memmove8
+c0de0e7d c0de0e7d        8     1                 __aeabi_memmove4
+c0de0e84 c0de0e84       10     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memset.o):(.text.__aeabi_memset)
+c0de0e84 c0de0e84        0     1                 $t
+c0de0e85 c0de0e85        e     1                 __aeabi_memset
+c0de0e85 c0de0e85        e     1                 __aeabi_memset8
+c0de0e85 c0de0e85        e     1                 __aeabi_memset4
+c0de0e94 c0de0e94       50     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memcmp.o):(.text.memcmp)
+c0de0e94 c0de0e94        0     1                 $t
+c0de0e95 c0de0e95       50     1                 memcmp
+c0de0ee4 c0de0ee4       a8     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memcpy-stub.o):(.text.memcpy)
+c0de0ee4 c0de0ee4        0     1                 $t
+c0de0ee5 c0de0ee5       a6     1                 memcpy
+c0de0f8c c0de0f8c       bc     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memmove.o):(.text.memmove)
+c0de0f8c c0de0f8c        0     1                 $t
+c0de0f8d c0de0f8d       ba     1                 memmove
+c0de1048 c0de1048       a8     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memset.o):(.text.memset)
+c0de1048 c0de1048        0     1                 $t
+c0de1049 c0de1049       a8     1                 memset
+c0de10f0 c0de10f0       34     2         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-setjmp.o):(.text)
+c0de10f0 c0de10f0        0     1                 $t
+c0de10f1 c0de10f1        0     1                 setjmp
+c0de1109 c0de1109        0     1                 longjmp
+c0de1124 c0de1124       4c     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strlcpy.o):(.text.strlcpy)
+c0de1124 c0de1124        0     1                 $t
+c0de1125 c0de1125       4c     1                 strlcpy
+c0de1170 c0de1170       2c     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strnlen.o):(.text.strnlen)
+c0de1170 c0de1170        0     1                 $t
+c0de1171 c0de1171       2a     1                 strnlen
+c0de119c c0de119c      275     1         <internal>:(.text)
+c0de1414 c0de1414       18     4         build/nanox/obj/main.o:(.rodata.ORIGIN_ETHER_SELECTORS)
+c0de1414 c0de1414       18     1                 ORIGIN_ETHER_SELECTORS
+c0de142c c0de142c       10     1         build/nanox/obj/os_printf.o:(.rodata.g_pcHex)
+c0de142c c0de142c       10     1                 g_pcHex
+c0de143c c0de143c       10     1         build/nanox/obj/os_printf.o:(.rodata.g_pcHex_cap)
+c0de143c c0de143c       10     1                 g_pcHex_cap
+c0de144c c0de144c       14     1         build/nanox/obj/main.o:(.rodata.NULL_ETH_ADDRESS)
+c0de144c c0de144c       14     1                 NULL_ETH_ADDRESS
+c0de1460 c0de1460        0     1         . = ALIGN ( 4 )
+c0de1460 c0de1460        0     1         _etext = .
+c0de1460 c0de1460       a0     1         . = ALIGN ( PAGE_SIZE )
+c0de1500 c0de1500        0     1         _nvram_data = .
+c0de1500 c0de1500        0     1         . = ALIGN ( PAGE_SIZE )
+c0de1500 c0de1500        0     1         _envram_data = .
+c0de1500 c0de1500        0     1         _install_parameters = .
+c0de1500 c0de1500        0     1         _nvram_end = .
+d0000000 d0000000        0     1 .data
+d0000000 d0000000        0     1         . = ALIGN ( 4 )
+d0000000 d0000000        0     1         _data = .
+d0000000 d0000000        0     1         _edata = .
+da7a0000 da7a0000      5e4     1 .bss
+da7a0000 da7a0000        0     1         _bss = .
+da7a0000 da7a0000        0     1         __stack_chk_guard = .
+da7a0000 da7a0000        4     1         . += 4
+da7a0004 da7a0004        0     1         _ebss = .
+da7a0004 da7a0004        0     1         . = ALIGN ( 4 )
+da7a0004 da7a0004        0     1         app_stack_canary = .
+da7a0004 da7a0004        4     1         . += 4
+da7a0008 da7a0008        0     1         _stack_validation = .
+da7a0008 da7a0008      5dc     1         . = _stack_validation + STACK_SIZE
+da7a05e4 da7a05e4        0     1         _stack = ABSOLUTE ( END_STACK ) - STACK_SIZE
+da7a05e4 da7a05e4        0     1         _estack = ABSOLUTE ( END_STACK )
+       0        0       30     1 .comment
+       0        0       30     1         <internal>:(.comment)
+       0        0      4b0     8 .debug_aranges
+       0        0      450     8         build/nanox/obj/cx_stubs.o:(.debug_aranges)
+     450      450       20     8         build/nanox/obj/stack_protector_init.o:(.debug_aranges)
+     470      470       20     8         build/nanox/obj/svc_call.o:(.debug_aranges)
+     490      490       20     8         build/nanox/obj/svc_cx_call.o:(.debug_aranges)
+       0        0    1bfa6     1 .debug_info
+       0        0      9ee     1         build/nanox/obj/bagl.o:(.debug_info)
+     9ee      9ee      278     1         build/nanox/obj/bagl_fonts.o:(.debug_info)
+     c66      c66     2982     1         build/nanox/obj/ble_gap_aci.o:(.debug_info)
+    35e8     35e8     2d9b     1         build/nanox/obj/ble_gatt_aci.o:(.debug_info)
+    6383     6383      bf0     1         build/nanox/obj/ble_hal_aci.o:(.debug_info)
+    6f73     6f73     2e4e     1         build/nanox/obj/ble_hci_le.o:(.debug_info)
+    9dc1     9dc1      9bb     1         build/nanox/obj/ble_l2cap_aci.o:(.debug_info)
+    a77c     a77c       22     1         build/nanox/obj/cx_stubs.o:(.debug_info)
+    a79e     a79e      bb8     1         build/nanox/obj/eth_internals.o:(.debug_info)
+    b356     b356      3be     1         build/nanox/obj/glyphs.o:(.debug_info)
+    b714     b714      6d6     1         build/nanox/obj/handle_finalize.o:(.debug_info)
+    bdea     bdea      743     1         build/nanox/obj/handle_init_contract.o:(.debug_info)
+    c52d     c52d      793     1         build/nanox/obj/handle_provide_parameter.o:(.debug_info)
+    ccc0     ccc0      6c5     1         build/nanox/obj/handle_provide_token.o:(.debug_info)
+    d385     d385      600     1         build/nanox/obj/handle_query_contract_id.o:(.debug_info)
+    d985     d985      860     1         build/nanox/obj/handle_query_contract_ui.o:(.debug_info)
+    e1e5     e1e5     11bd     1         build/nanox/obj/ledger_ble.o:(.debug_info)
+    f3a2     f3a2      36d     1         build/nanox/obj/ledger_protocol.o:(.debug_info)
+    f70f     f70f      7b8     1         build/nanox/obj/main.o:(.debug_info)
+    fec7     fec7      73a     1         build/nanox/obj/os.o:(.debug_info)
+   10601    10601      fea     1         build/nanox/obj/os_io_seproxyhal.o:(.debug_info)
+   115eb    115eb       78     1         build/nanox/obj/os_io_task.o:(.debug_info)
+   11663    11663      2b6     1         build/nanox/obj/os_io_usb.o:(.debug_info)
+   11919    11919      39e     1         build/nanox/obj/os_printf.o:(.debug_info)
+   11cb7    11cb7      105     1         build/nanox/obj/osal.o:(.debug_info)
+   11dbc    11dbc       8c     1         build/nanox/obj/pic.o:(.debug_info)
+   11e48    11e48      3d2     1         build/nanox/obj/printf.o:(.debug_info)
+   1221a    1221a       26     1         build/nanox/obj/stack_protector_init.o:(.debug_info)
+   12240    12240       26     1         build/nanox/obj/svc_call.o:(.debug_info)
+   12266    12266       26     1         build/nanox/obj/svc_cx_call.o:(.debug_info)
+   1228c    1228c     34de     1         build/nanox/obj/syscalls.o:(.debug_info)
+   1576a    1576a      8e9     1         build/nanox/obj/usbd_conf.o:(.debug_info)
+   16053    16053      aa7     1         build/nanox/obj/usbd_core.o:(.debug_info)
+   16afa    16afa      9fb     1         build/nanox/obj/usbd_ctlreq.o:(.debug_info)
+   174f5    174f5      612     1         build/nanox/obj/usbd_hid.o:(.debug_info)
+   17b07    17b07      9fd     1         build/nanox/obj/usbd_impl.o:(.debug_info)
+   18504    18504      6ac     1         build/nanox/obj/usbd_ioreq.o:(.debug_info)
+   18bb0    18bb0      3a0     1         build/nanox/obj/ux_flow_engine.o:(.debug_info)
+   18f50    18f50      1e6     1         build/nanox/obj/ux_layout_bb.o:(.debug_info)
+   19136    19136      249     1         build/nanox/obj/ux_layout_bn.o:(.debug_info)
+   1937f    1937f      1c5     1         build/nanox/obj/ux_layout_bnn.o:(.debug_info)
+   19544    19544      1c5     1         build/nanox/obj/ux_layout_bnnn.o:(.debug_info)
+   19709    19709      249     1         build/nanox/obj/ux_layout_nn.o:(.debug_info)
+   19952    19952      23a     1         build/nanox/obj/ux_layout_nnbnn.o:(.debug_info)
+   19b8c    19b8c      1c5     1         build/nanox/obj/ux_layout_nnn.o:(.debug_info)
+   19d51    19d51      1c5     1         build/nanox/obj/ux_layout_nnnn.o:(.debug_info)
+   19f16    19f16      7fc     1         build/nanox/obj/ux_layout_paging.o:(.debug_info)
+   1a712    1a712      251     1         build/nanox/obj/ux_layout_paging_compute.o:(.debug_info)
+   1a963    1a963      2a8     1         build/nanox/obj/ux_layout_pb.o:(.debug_info)
+   1ac0b    1ac0b      2d5     1         build/nanox/obj/ux_layout_pbb.o:(.debug_info)
+   1aee0    1aee0      249     1         build/nanox/obj/ux_layout_pbn.o:(.debug_info)
+   1b129    1b129      1c5     1         build/nanox/obj/ux_layout_pn.o:(.debug_info)
+   1b2ee    1b2ee      249     1         build/nanox/obj/ux_layout_pnn.o:(.debug_info)
+   1b537    1b537      251     1         build/nanox/obj/ux_layout_utils.o:(.debug_info)
+   1b788    1b788      1b6     1         build/nanox/obj/ux_legacy.o:(.debug_info)
+   1b93e    1b93e      204     1         build/nanox/obj/ux_menulist.o:(.debug_info)
+   1bb42    1bb42      464     1         build/nanox/obj/ux_stack.o:(.debug_info)
+       0        0     4470     1 .debug_abbrev
+       0        0      1d4     1         build/nanox/obj/bagl.o:(.debug_abbrev)
+     1d4      1d4       96     1         build/nanox/obj/bagl_fonts.o:(.debug_abbrev)
+     26a      26a      194     1         build/nanox/obj/ble_gap_aci.o:(.debug_abbrev)
+     3fe      3fe      199     1         build/nanox/obj/ble_gatt_aci.o:(.debug_abbrev)
+     597      597      162     1         build/nanox/obj/ble_hal_aci.o:(.debug_abbrev)
+     6f9      6f9      17a     1         build/nanox/obj/ble_hci_le.o:(.debug_abbrev)
+     873      873      151     1         build/nanox/obj/ble_l2cap_aci.o:(.debug_abbrev)
+     9c4      9c4       12     1         build/nanox/obj/cx_stubs.o:(.debug_abbrev)
+     9d6      9d6      222     1         build/nanox/obj/eth_internals.o:(.debug_abbrev)
+     bf8      bf8       7e     1         build/nanox/obj/glyphs.o:(.debug_abbrev)
+     c76      c76      180     1         build/nanox/obj/handle_finalize.o:(.debug_abbrev)
+     df6      df6      174     1         build/nanox/obj/handle_init_contract.o:(.debug_abbrev)
+     f6a      f6a      16b     1         build/nanox/obj/handle_provide_parameter.o:(.debug_abbrev)
+    10d5     10d5      150     1         build/nanox/obj/handle_provide_token.o:(.debug_abbrev)
+    1225     1225      106     1         build/nanox/obj/handle_query_contract_id.o:(.debug_abbrev)
+    132b     132b      18f     1         build/nanox/obj/handle_query_contract_ui.o:(.debug_abbrev)
+    14ba     14ba      2d8     1         build/nanox/obj/ledger_ble.o:(.debug_abbrev)
+    1792     1792      141     1         build/nanox/obj/ledger_protocol.o:(.debug_abbrev)
+    18d3     18d3      1e0     1         build/nanox/obj/main.o:(.debug_abbrev)
+    1ab3     1ab3      201     1         build/nanox/obj/os.o:(.debug_abbrev)
+    1cb4     1cb4      2fb     1         build/nanox/obj/os_io_seproxyhal.o:(.debug_abbrev)
+    1faf     1faf       84     1         build/nanox/obj/os_io_task.o:(.debug_abbrev)
+    2033     2033      160     1         build/nanox/obj/os_io_usb.o:(.debug_abbrev)
+    2193     2193      150     1         build/nanox/obj/os_printf.o:(.debug_abbrev)
+    22e3     22e3       59     1         build/nanox/obj/osal.o:(.debug_abbrev)
+    233c     233c       7d     1         build/nanox/obj/pic.o:(.debug_abbrev)
+    23b9     23b9      18b     1         build/nanox/obj/printf.o:(.debug_abbrev)
+    2544     2544       14     1         build/nanox/obj/stack_protector_init.o:(.debug_abbrev)
+    2558     2558       14     1         build/nanox/obj/svc_call.o:(.debug_abbrev)
+    256c     256c       14     1         build/nanox/obj/svc_cx_call.o:(.debug_abbrev)
+    2580     2580      1b0     1         build/nanox/obj/syscalls.o:(.debug_abbrev)
+    2730     2730      157     1         build/nanox/obj/usbd_conf.o:(.debug_abbrev)
+    2887     2887      1e1     1         build/nanox/obj/usbd_core.o:(.debug_abbrev)
+    2a68     2a68      207     1         build/nanox/obj/usbd_ctlreq.o:(.debug_abbrev)
+    2c6f     2c6f      10e     1         build/nanox/obj/usbd_hid.o:(.debug_abbrev)
+    2d7d     2d7d      1a7     1         build/nanox/obj/usbd_impl.o:(.debug_abbrev)
+    2f24     2f24       f0     1         build/nanox/obj/usbd_ioreq.o:(.debug_abbrev)
+    3014     3014      180     1         build/nanox/obj/ux_flow_engine.o:(.debug_abbrev)
+    3194     3194       cc     1         build/nanox/obj/ux_layout_bb.o:(.debug_abbrev)
+    3260     3260       d6     1         build/nanox/obj/ux_layout_bn.o:(.debug_abbrev)
+    3336     3336       cc     1         build/nanox/obj/ux_layout_bnn.o:(.debug_abbrev)
+    3402     3402       cc     1         build/nanox/obj/ux_layout_bnnn.o:(.debug_abbrev)
+    34ce     34ce       d6     1         build/nanox/obj/ux_layout_nn.o:(.debug_abbrev)
+    35a4     35a4       fa     1         build/nanox/obj/ux_layout_nnbnn.o:(.debug_abbrev)
+    369e     369e       cc     1         build/nanox/obj/ux_layout_nnn.o:(.debug_abbrev)
+    376a     376a       cc     1         build/nanox/obj/ux_layout_nnnn.o:(.debug_abbrev)
+    3836     3836      2a4     1         build/nanox/obj/ux_layout_paging.o:(.debug_abbrev)
+    3ada     3ada       f0     1         build/nanox/obj/ux_layout_paging_compute.o:(.debug_abbrev)
+    3bca     3bca       fa     1         build/nanox/obj/ux_layout_pb.o:(.debug_abbrev)
+    3cc4     3cc4       fa     1         build/nanox/obj/ux_layout_pbb.o:(.debug_abbrev)
+    3dbe     3dbe       d6     1         build/nanox/obj/ux_layout_pbn.o:(.debug_abbrev)
+    3e94     3e94       cc     1         build/nanox/obj/ux_layout_pn.o:(.debug_abbrev)
+    3f60     3f60       d6     1         build/nanox/obj/ux_layout_pnn.o:(.debug_abbrev)
+    4036     4036      101     1         build/nanox/obj/ux_layout_utils.o:(.debug_abbrev)
+    4137     4137       a2     1         build/nanox/obj/ux_legacy.o:(.debug_abbrev)
+    41d9     41d9      100     1         build/nanox/obj/ux_menulist.o:(.debug_abbrev)
+    42d9     42d9      197     1         build/nanox/obj/ux_stack.o:(.debug_abbrev)
+       0        0    1116f     1 .debug_line
+       0        0      d1e     1         build/nanox/obj/bagl.o:(.debug_line)
+     d1e      d1e      11c     1         build/nanox/obj/bagl_fonts.o:(.debug_line)
+     e3a      e3a     12c0     1         build/nanox/obj/ble_gap_aci.o:(.debug_line)
+    20fa     20fa     1479     1         build/nanox/obj/ble_gatt_aci.o:(.debug_line)
+    3573     3573      7ca     1         build/nanox/obj/ble_hal_aci.o:(.debug_line)
+    3d3d     3d3d     19a5     1         build/nanox/obj/ble_hci_le.o:(.debug_line)
+    56e2     56e2      4ae     1         build/nanox/obj/ble_l2cap_aci.o:(.debug_line)
+    5b90     5b90      911     1         build/nanox/obj/cx_stubs.o:(.debug_line)
+    64a1     64a1      76e     1         build/nanox/obj/eth_internals.o:(.debug_line)
+    6c0f     6c0f       6f     1         build/nanox/obj/glyphs.o:(.debug_line)
+    6c7e     6c7e      290     1         build/nanox/obj/handle_finalize.o:(.debug_line)
+    6f0e     6f0e      28f     1         build/nanox/obj/handle_init_contract.o:(.debug_line)
+    719d     719d      2f1     1         build/nanox/obj/handle_provide_parameter.o:(.debug_line)
+    748e     748e      26f     1         build/nanox/obj/handle_provide_token.o:(.debug_line)
+    76fd     76fd      226     1         build/nanox/obj/handle_query_contract_id.o:(.debug_line)
+    7923     7923      35e     1         build/nanox/obj/handle_query_contract_ui.o:(.debug_line)
+    7c81     7c81     11d6     1         build/nanox/obj/ledger_ble.o:(.debug_line)
+    8e57     8e57      422     1         build/nanox/obj/ledger_protocol.o:(.debug_line)
+    9279     9279      329     1         build/nanox/obj/main.o:(.debug_line)
+    95a2     95a2      5ba     1         build/nanox/obj/os.o:(.debug_line)
+    9b5c     9b5c      d41     1         build/nanox/obj/os_io_seproxyhal.o:(.debug_line)
+    a89d     a89d       a2     1         build/nanox/obj/os_io_task.o:(.debug_line)
+    a93f     a93f      38d     1         build/nanox/obj/os_io_usb.o:(.debug_line)
+    accc     accc      705     1         build/nanox/obj/os_printf.o:(.debug_line)
+    b3d1     b3d1       9d     1         build/nanox/obj/osal.o:(.debug_line)
+    b46e     b46e       8e     1         build/nanox/obj/pic.o:(.debug_line)
+    b4fc     b4fc      3f9     1         build/nanox/obj/printf.o:(.debug_line)
+    b8f5     b8f5       60     1         build/nanox/obj/stack_protector_init.o:(.debug_line)
+    b955     b955       57     1         build/nanox/obj/svc_call.o:(.debug_line)
+    b9ac     b9ac       56     1         build/nanox/obj/svc_cx_call.o:(.debug_line)
+    ba02     ba02     1b6e     1         build/nanox/obj/syscalls.o:(.debug_line)
+    d570     d570      301     1         build/nanox/obj/usbd_conf.o:(.debug_line)
+    d871     d871      690     1         build/nanox/obj/usbd_core.o:(.debug_line)
+    df01     df01      740     1         build/nanox/obj/usbd_ctlreq.o:(.debug_line)
+    e641     e641      231     1         build/nanox/obj/usbd_hid.o:(.debug_line)
+    e872     e872      3d1     1         build/nanox/obj/usbd_impl.o:(.debug_line)
+    ec43     ec43      208     1         build/nanox/obj/usbd_ioreq.o:(.debug_line)
+    ee4b     ee4b      677     1         build/nanox/obj/ux_flow_engine.o:(.debug_line)
+    f4c2     f4c2      10f     1         build/nanox/obj/ux_layout_bb.o:(.debug_line)
+    f5d1     f5d1      107     1         build/nanox/obj/ux_layout_bn.o:(.debug_line)
+    f6d8     f6d8       e8     1         build/nanox/obj/ux_layout_bnn.o:(.debug_line)
+    f7c0     f7c0       e9     1         build/nanox/obj/ux_layout_bnnn.o:(.debug_line)
+    f8a9     f8a9      107     1         build/nanox/obj/ux_layout_nn.o:(.debug_line)
+    f9b0     f9b0      14a     1         build/nanox/obj/ux_layout_nnbnn.o:(.debug_line)
+    fafa     fafa       e8     1         build/nanox/obj/ux_layout_nnn.o:(.debug_line)
+    fbe2     fbe2       e9     1         build/nanox/obj/ux_layout_nnnn.o:(.debug_line)
+    fccb     fccb      4cc     1         build/nanox/obj/ux_layout_paging.o:(.debug_line)
+   10197    10197      22f     1         build/nanox/obj/ux_layout_paging_compute.o:(.debug_line)
+   103c6    103c6      166     1         build/nanox/obj/ux_layout_pb.o:(.debug_line)
+   1052c    1052c      187     1         build/nanox/obj/ux_layout_pbb.o:(.debug_line)
+   106b3    106b3      108     1         build/nanox/obj/ux_layout_pbn.o:(.debug_line)
+   107bb    107bb       e7     1         build/nanox/obj/ux_layout_pn.o:(.debug_line)
+   108a2    108a2      108     1         build/nanox/obj/ux_layout_pnn.o:(.debug_line)
+   109aa    109aa      175     1         build/nanox/obj/ux_layout_utils.o:(.debug_line)
+   10b1f    10b1f       ca     1         build/nanox/obj/ux_legacy.o:(.debug_line)
+   10be9    10be9      199     1         build/nanox/obj/ux_menulist.o:(.debug_line)
+   10d82    10d82      3ed     1         build/nanox/obj/ux_stack.o:(.debug_line)
+       0        0     498c     4 .debug_frame
+       0        0      140     4         build/nanox/obj/bagl.o:(.debug_frame)
+     140      140      5f0     4         build/nanox/obj/ble_gap_aci.o:(.debug_frame)
+     730      730      660     4         build/nanox/obj/ble_gatt_aci.o:(.debug_frame)
+     d90      d90      294     4         build/nanox/obj/ble_hal_aci.o:(.debug_frame)
+    1024     1024      8c4     4         build/nanox/obj/ble_hci_le.o:(.debug_frame)
+    18e8     18e8      158     4         build/nanox/obj/ble_l2cap_aci.o:(.debug_frame)
+    1a40     1a40      1a8     4         build/nanox/obj/eth_internals.o:(.debug_frame)
+    1be8     1be8       50     4         build/nanox/obj/handle_finalize.o:(.debug_frame)
+    1c38     1c38       30     4         build/nanox/obj/handle_init_contract.o:(.debug_frame)
+    1c68     1c68       6c     4         build/nanox/obj/handle_provide_parameter.o:(.debug_frame)
+    1cd4     1cd4       30     4         build/nanox/obj/handle_provide_token.o:(.debug_frame)
+    1d04     1d04       30     4         build/nanox/obj/handle_query_contract_id.o:(.debug_frame)
+    1d34     1d34       34     4         build/nanox/obj/handle_query_contract_ui.o:(.debug_frame)
+    1d68     1d68      220     4         build/nanox/obj/ledger_ble.o:(.debug_frame)
+    1f88     1f88       64     4         build/nanox/obj/ledger_protocol.o:(.debug_frame)
+    1fec     1fec       74     4         build/nanox/obj/main.o:(.debug_frame)
+    2060     2060      1a4     4         build/nanox/obj/os.o:(.debug_frame)
+    2204     2204      33c     4         build/nanox/obj/os_io_seproxyhal.o:(.debug_frame)
+    2540     2540       2c     4         build/nanox/obj/os_io_task.o:(.debug_frame)
+    256c     256c       7c     4         build/nanox/obj/os_io_usb.o:(.debug_frame)
+    25e8     25e8       5c     4         build/nanox/obj/os_printf.o:(.debug_frame)
+    2644     2644       5c     4         build/nanox/obj/osal.o:(.debug_frame)
+    26a0     26a0       3c     4         build/nanox/obj/pic.o:(.debug_frame)
+    26dc     26dc       58     4         build/nanox/obj/printf.o:(.debug_frame)
+    2734     2734      f7c     4         build/nanox/obj/syscalls.o:(.debug_frame)
+    36b0     36b0      148     4         build/nanox/obj/usbd_conf.o:(.debug_frame)
+    37f8     37f8      1f8     4         build/nanox/obj/usbd_core.o:(.debug_frame)
+    39f0     39f0      1a0     4         build/nanox/obj/usbd_ctlreq.o:(.debug_frame)
+    3b90     3b90       64     4         build/nanox/obj/usbd_hid.o:(.debug_frame)
+    3bf4     3bf4      124     4         build/nanox/obj/usbd_impl.o:(.debug_frame)
+    3d18     3d18       ac     4         build/nanox/obj/usbd_ioreq.o:(.debug_frame)
+    3dc4     3dc4      1dc     4         build/nanox/obj/ux_flow_engine.o:(.debug_frame)
+    3fa0     3fa0       44     4         build/nanox/obj/ux_layout_bb.o:(.debug_frame)
+    3fe4     3fe4       44     4         build/nanox/obj/ux_layout_bn.o:(.debug_frame)
+    4028     4028       2c     4         build/nanox/obj/ux_layout_bnn.o:(.debug_frame)
+    4054     4054       2c     4         build/nanox/obj/ux_layout_bnnn.o:(.debug_frame)
+    4080     4080       44     4         build/nanox/obj/ux_layout_nn.o:(.debug_frame)
+    40c4     40c4       4c     4         build/nanox/obj/ux_layout_nnbnn.o:(.debug_frame)
+    4110     4110       2c     4         build/nanox/obj/ux_layout_nnn.o:(.debug_frame)
+    413c     413c       2c     4         build/nanox/obj/ux_layout_nnnn.o:(.debug_frame)
+    4168     4168      164     4         build/nanox/obj/ux_layout_paging.o:(.debug_frame)
+    42cc     42cc       44     4         build/nanox/obj/ux_layout_paging_compute.o:(.debug_frame)
+    4310     4310       4c     4         build/nanox/obj/ux_layout_pb.o:(.debug_frame)
+    435c     435c       64     4         build/nanox/obj/ux_layout_pbb.o:(.debug_frame)
+    43c0     43c0       44     4         build/nanox/obj/ux_layout_pbn.o:(.debug_frame)
+    4404     4404       2c     4         build/nanox/obj/ux_layout_pn.o:(.debug_frame)
+    4430     4430       44     4         build/nanox/obj/ux_layout_pnn.o:(.debug_frame)
+    4474     4474       5c     4         build/nanox/obj/ux_layout_utils.o:(.debug_frame)
+    44d0     44d0       2c     4         build/nanox/obj/ux_legacy.o:(.debug_frame)
+    44fc     44fc       84     4         build/nanox/obj/ux_menulist.o:(.debug_frame)
+    4580     4580      11c     4         build/nanox/obj/ux_stack.o:(.debug_frame)
+    469c     469c       20     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_udivsi3.o):(.debug_frame)
+    46ac     46ac        0     1                 $d
+    46bc     46bc       34     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_muldi3.o):(.debug_frame)
+    46f0     46f0       3c     4         /opt/nanox-secure-sdk/arch/st33/lib/libgcc.a(_udivmoddi4.o):(.debug_frame)
+    472c     472c       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memclr.o):(.debug_frame)
+    4754     4754       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memcpy.o):(.debug_frame)
+    477c     477c       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memmove.o):(.debug_frame)
+    47a4     47a4       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-aeabi_memset.o):(.debug_frame)
+    47cc     47cc       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-explicit_bzero.o):(.debug_frame)
+    47f4     47f4       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-bzero.o):(.debug_frame)
+    481c     481c       2c     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memcmp.o):(.debug_frame)
+    4848     4848       34     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memcpy-stub.o):(.debug_frame)
+    487c     487c       34     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memmove.o):(.debug_frame)
+    48b0     48b0       30     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-memset.o):(.debug_frame)
+    48e0     48e0       2c     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strlcat.o):(.debug_frame)
+    490c     490c       30     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strlcpy.o):(.debug_frame)
+    493c     493c       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strlen-stub.o):(.debug_frame)
+    4964     4964       28     4         /opt/nanox-secure-sdk/arch/st33/lib/libc.a(lib_a-strnlen.o):(.debug_frame)
+       0        0     acf9     1 .debug_str
+       0        0     acf9     1         <internal>:(.debug_str)
+       0        0    15a18     1 .debug_loc
+       0        0     1278     1         build/nanox/obj/bagl.o:(.debug_loc)
+    1278     1278     2808     1         build/nanox/obj/ble_gap_aci.o:(.debug_loc)
+    3a80     3a80     3200     1         build/nanox/obj/ble_gatt_aci.o:(.debug_loc)
+    6c80     6c80      804     1         build/nanox/obj/ble_hal_aci.o:(.debug_loc)
+    7484     7484     27ba     1         build/nanox/obj/ble_hci_le.o:(.debug_loc)
+    9c3e     9c3e      9b7     1         build/nanox/obj/ble_l2cap_aci.o:(.debug_loc)
+    a5f5     a5f5      d15     1         build/nanox/obj/eth_internals.o:(.debug_loc)
+    b30a     b30a       a9     1         build/nanox/obj/handle_finalize.o:(.debug_loc)
+    b3b3     b3b3       75     1         build/nanox/obj/handle_init_contract.o:(.debug_loc)
+    b428     b428      143     1         build/nanox/obj/handle_provide_parameter.o:(.debug_loc)
+    b56b     b56b       3c     1         build/nanox/obj/handle_provide_token.o:(.debug_loc)
+    b5a7     b5a7       3c     1         build/nanox/obj/handle_query_contract_id.o:(.debug_loc)
+    b5e3     b5e3       ed     1         build/nanox/obj/handle_query_contract_ui.o:(.debug_loc)
+    b6d0     b6d0      955     1         build/nanox/obj/ledger_ble.o:(.debug_loc)
+    c025     c025      2c8     1         build/nanox/obj/ledger_protocol.o:(.debug_loc)
+    c2ed     c2ed      1ac     1         build/nanox/obj/main.o:(.debug_loc)
+    c499     c499      ae2     1         build/nanox/obj/os.o:(.debug_loc)
+    cf7b     cf7b      a49     1         build/nanox/obj/os_io_seproxyhal.o:(.debug_loc)
+    d9c4     d9c4      1a8     1         build/nanox/obj/os_io_usb.o:(.debug_loc)
+    db6c     db6c      c8b     1         build/nanox/obj/os_printf.o:(.debug_loc)
+    e7f7     e7f7      189     1         build/nanox/obj/osal.o:(.debug_loc)
+    e980     e980       8b     1         build/nanox/obj/pic.o:(.debug_loc)
+    ea0b     ea0b      700     1         build/nanox/obj/printf.o:(.debug_loc)
+    f10b     f10b     3ae0     1         build/nanox/obj/syscalls.o:(.debug_loc)
+   12beb    12beb      429     1         build/nanox/obj/usbd_conf.o:(.debug_loc)
+   13014    13014      724     1         build/nanox/obj/usbd_core.o:(.debug_loc)
+   13738    13738      8ca     1         build/nanox/obj/usbd_ctlreq.o:(.debug_loc)
+   14002    14002      178     1         build/nanox/obj/usbd_hid.o:(.debug_loc)
+   1417a    1417a      2b8     1         build/nanox/obj/usbd_impl.o:(.debug_loc)
+   14432    14432      235     1         build/nanox/obj/usbd_ioreq.o:(.debug_loc)
+   14667    14667      37c     1         build/nanox/obj/ux_flow_engine.o:(.debug_loc)
+   149e3    149e3       4c     1         build/nanox/obj/ux_layout_bb.o:(.debug_loc)
+   14a2f    14a2f       6a     1         build/nanox/obj/ux_layout_bn.o:(.debug_loc)
+   14a99    14a99       1e     1         build/nanox/obj/ux_layout_bnn.o:(.debug_loc)
+   14ab7    14ab7       1e     1         build/nanox/obj/ux_layout_bnnn.o:(.debug_loc)
+   14ad5    14ad5       6a     1         build/nanox/obj/ux_layout_nn.o:(.debug_loc)
+   14b3f    14b3f       67     1         build/nanox/obj/ux_layout_nnbnn.o:(.debug_loc)
+   14ba6    14ba6       1e     1         build/nanox/obj/ux_layout_nnn.o:(.debug_loc)
+   14bc4    14bc4       1e     1         build/nanox/obj/ux_layout_nnnn.o:(.debug_loc)
+   14be2    14be2      49c     1         build/nanox/obj/ux_layout_paging.o:(.debug_loc)
+   1507e    1507e      2ed     1         build/nanox/obj/ux_layout_paging_compute.o:(.debug_loc)
+   1536b    1536b       67     1         build/nanox/obj/ux_layout_pb.o:(.debug_loc)
+   153d2    153d2       8d     1         build/nanox/obj/ux_layout_pbb.o:(.debug_loc)
+   1545f    1545f       6a     1         build/nanox/obj/ux_layout_pbn.o:(.debug_loc)
+   154c9    154c9       1e     1         build/nanox/obj/ux_layout_pn.o:(.debug_loc)
+   154e7    154e7       6a     1         build/nanox/obj/ux_layout_pnn.o:(.debug_loc)
+   15551    15551       bc     1         build/nanox/obj/ux_layout_utils.o:(.debug_loc)
+   1560d    1560d      1d4     1         build/nanox/obj/ux_menulist.o:(.debug_loc)
+   157e1    157e1      237     1         build/nanox/obj/ux_stack.o:(.debug_loc)
+da7a05e4 da7a05e4        0     1 PROVIDE ( _nvram = ABSOLUTE ( _nvram_start ) )
+da7a05e4 da7a05e4        0     1 PROVIDE ( _envram = ABSOLUTE ( _nvram_end ) )
+       0        0     1cd8     8 .debug_ranges
+       0        0       c0     1         build/nanox/obj/bagl.o:(.debug_ranges)
+      c0       c0      158     1         build/nanox/obj/ble_gap_aci.o:(.debug_ranges)
+     218      218      1b8     1         build/nanox/obj/ble_gatt_aci.o:(.debug_ranges)
+     3d0      3d0       a0     1         build/nanox/obj/ble_hal_aci.o:(.debug_ranges)
+     470      470      208     1         build/nanox/obj/ble_hci_le.o:(.debug_ranges)
+     678      678       50     1         build/nanox/obj/ble_l2cap_aci.o:(.debug_ranges)
+     6c8      6c8      448     8         build/nanox/obj/cx_stubs.o:(.debug_ranges)
+     b10      b10       f0     1         build/nanox/obj/eth_internals.o:(.debug_ranges)
+     c00      c00       18     1         build/nanox/obj/handle_finalize.o:(.debug_ranges)
+     c18      c18       30     1         build/nanox/obj/handle_init_contract.o:(.debug_ranges)
+     c48      c48       20     1         build/nanox/obj/handle_provide_parameter.o:(.debug_ranges)
+     c68      c68       20     1         build/nanox/obj/handle_query_contract_ui.o:(.debug_ranges)
+     c88      c88      1f8     1         build/nanox/obj/ledger_ble.o:(.debug_ranges)
+     e80      e80       78     1         build/nanox/obj/ledger_protocol.o:(.debug_ranges)
+     ef8      ef8       58     1         build/nanox/obj/main.o:(.debug_ranges)
+     f50      f50       a8     1         build/nanox/obj/os.o:(.debug_ranges)
+     ff8      ff8      158     1         build/nanox/obj/os_io_seproxyhal.o:(.debug_ranges)
+    1150     1150       40     1         build/nanox/obj/os_io_usb.o:(.debug_ranges)
+    1190     1190       30     1         build/nanox/obj/os_printf.o:(.debug_ranges)
+    11c0     11c0       20     1         build/nanox/obj/osal.o:(.debug_ranges)
+    11e0     11e0       18     1         build/nanox/obj/pic.o:(.debug_ranges)
+    11f8     11f8       78     1         build/nanox/obj/printf.o:(.debug_ranges)
+    1270     1270      518     1         build/nanox/obj/syscalls.o:(.debug_ranges)
+    1788     1788       70     1         build/nanox/obj/usbd_conf.o:(.debug_ranges)
+    17f8     17f8       b0     1         build/nanox/obj/usbd_core.o:(.debug_ranges)
+    18a8     18a8       88     1         build/nanox/obj/usbd_ctlreq.o:(.debug_ranges)
+    1930     1930       20     1         build/nanox/obj/usbd_hid.o:(.debug_ranges)
+    1950     1950       80     1         build/nanox/obj/usbd_impl.o:(.debug_ranges)
+    19d0     19d0       38     1         build/nanox/obj/usbd_ioreq.o:(.debug_ranges)
+    1a08     1a08       98     1         build/nanox/obj/ux_flow_engine.o:(.debug_ranges)
+    1aa0     1aa0       18     1         build/nanox/obj/ux_layout_bb.o:(.debug_ranges)
+    1ab8     1ab8       18     1         build/nanox/obj/ux_layout_bn.o:(.debug_ranges)
+    1ad0     1ad0       18     1         build/nanox/obj/ux_layout_nn.o:(.debug_ranges)
+    1ae8     1ae8       18     1         build/nanox/obj/ux_layout_nnbnn.o:(.debug_ranges)
+    1b00     1b00       a0     1         build/nanox/obj/ux_layout_paging.o:(.debug_ranges)
+    1ba0     1ba0       18     1         build/nanox/obj/ux_layout_paging_compute.o:(.debug_ranges)
+    1bb8     1bb8       18     1         build/nanox/obj/ux_layout_pb.o:(.debug_ranges)
+    1bd0     1bd0       20     1         build/nanox/obj/ux_layout_pbb.o:(.debug_ranges)
+    1bf0     1bf0       18     1         build/nanox/obj/ux_layout_pbn.o:(.debug_ranges)
+    1c08     1c08       18     1         build/nanox/obj/ux_layout_pnn.o:(.debug_ranges)
+    1c20     1c20       20     1         build/nanox/obj/ux_layout_utils.o:(.debug_ranges)
+    1c40     1c40       28     1         build/nanox/obj/ux_menulist.o:(.debug_ranges)
+    1c68     1c68       70     1         build/nanox/obj/ux_stack.o:(.debug_ranges)
+       0        0       45     1 .ARM.attributes
+       0        0       45     1         build/nanox/obj/bagl.o:(.ARM.attributes)
+       0        0      e10     4 .symtab
+       0        0      e10     4         <internal>:(.symtab)
+       0        0       ab     1 .shstrtab
+       0        0       ab     1         <internal>:(.shstrtab)
+       0        0      948     1 .strtab
+       0        0      948     1         <internal>:(.strtab)

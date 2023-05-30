@@ -22,7 +22,7 @@
 #include "os.h"
 #include "cx.h"
 
-#include "origin_ether_plugin.h"
+#include "origin_defi_plugin.h"
 
 // List of selectors supported by this plugin.
 // EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
@@ -32,18 +32,43 @@ static const uint32_t ZAPPER_DEPOSIT_ETH_SELECTOR = 0xd0e30db0; // signature: de
 static const uint32_t ZAPPER_DEPOSIT_SFRXETH_SELECTOR = 0xd443e97d; // signature: depositSFRXETH(uint256 amount,uint256 minOETH), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
 static const uint32_t VAULT_MINT_SELECTOR = 0x156e29f6; // signature: mint(address _asset,uint256 _amount,uint256 _minimumOusdAmount), vault: 0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab
 static const uint32_t VAULT_REDEEM_SELECTOR = 0x7cbc2373; // signature: redeem(uint256 _amount,uint256 _minimumUnitAmount), vault: 0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab
-static const uint32_t CURVE_EXCHANGE_SELECTOR = 0x3df02124; // signature: exchange(int128 i,int128 j,uint256 _dx,uint256 _min_dy) curve pool: 0x94b17476a93b3262d87b9a326965d1e91f9c13e7
-//static const uint32_t APPROVE_SELECTOR = 0x095ea7b3; // signature: approve(address spender, uint256 amount)
+static const uint32_t CURVE_POOL_EXCHANGE_SELECTOR = 0x3df02124; // signature: exchange(int128 i,int128 j,uint256 _dx,uint256 _min_dy), ETH/OETH curve pool: 0x94b17476a93b3262d87b9a326965d1e91f9c13e7
+static const uint32_t CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR = 0xa6417ed6; // signature: exchange_underlying(int128 i, int128 j, uint256 dx, uint256 min_dy), OUSD/3CRV curve pool: 0x87650d7bbfc3a9f10587d7778206671719d9910d
+static const uint32_t CURVE_ROUTER_EXCHANGE_MULTIPLE = 0x353ca424; // signature exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected), curve router: 0x99a58482bd75cbab83b27ec03ca68ff489b5788f
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR = 0xc04b8d59; // exactInput(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR_SINGLE = 0x414bf389; // exactInputSingle(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
+static const uint32_t BUY_OUSD_WITH_USDT_SELECTOR = 0x35aa0b96; // buyOusdWithUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t SELL_OUSD_FOR_USDT_SELECTOR = 0xcb939053; // sellOusdForUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t BUY_OUSD_WITH_DAI_SELECTOR = 0x5981c746; // buyOusdWithDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t SELL_OUSD_FOR_DAI_SELECTOR = 0x8a095a0f; // sellOusdForDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t BUY_OUSD_WITH_USDC_SELECTOR = 0xbfc11ffd; // buyOusdWithUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t SELL_OUSD_FOR_USDC_SELECTOR = 0xc6b68169; // sellOusdForUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+
+// contract address check for:
+// VAULT_MINT_SELECTOR
+// VAULT_REDEEM_SELECTOR
+// CURVE_POOL_EXCHANGE_SELECTOR
+// CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR
 
 // Array of all the different boilerplate selectors. Make sure this follows the same order as the
 // enum defined in `boilerplate_plugin.h`
 // EDIT THIS: Use the names of the array declared above.
-const uint32_t ORIGIN_ETHER_SELECTORS[NUM_SELECTORS] = {
+const uint32_t ORIGIN_DEFI_SELECTORS[NUM_SELECTORS] = {
     ZAPPER_DEPOSIT_ETH_SELECTOR,
     ZAPPER_DEPOSIT_SFRXETH_SELECTOR,
     VAULT_MINT_SELECTOR,
     VAULT_REDEEM_SELECTOR,
-    CURVE_EXCHANGE_SELECTOR,
+    CURVE_POOLEXCHANGE_SELECTOR,
+    CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR,
+    CURVE_ROUTER_EXCHANGE_MULTIPLE,
+    UNISWAP_ROUTER_EXACT_INPUT,
+    UNISWAP_ROUTER_EXACT_INPUT_SINGLE,
+    BUY_OUSD_WITH_USDT_SELECTOR,
+    SELL_OUSD_FOR_USDT_SELECTOR,
+    BUY_OUSD_WITH_DAI_SELECTOR,
+    SELL_OUSD_FOR_DAI_SELECTOR,
+    BUY_OUSD_WITH_USDC_SELECTOR,
+    SELL_OUSD_FOR_USDC_SELECTOR
 };
 
 const uint8_t OETH_ADDRESS[ADDRESS_LENGTH] = {0x85, 0x6c, 0x4e, 0xfb, 0x76, 0xc1, 0xd1,

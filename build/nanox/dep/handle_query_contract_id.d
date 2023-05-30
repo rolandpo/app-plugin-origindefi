@@ -1,5 +1,5 @@
 build/nanox/obj/handle_query_contract_id.o: \
-  src/handle_query_contract_id.c src/origin_ether_plugin.h \
+  src/handle_query_contract_id.c src/origin_defi_plugin.h \
   ethereum-plugin-sdk/include/eth_internals.h \
   /opt/nanox-secure-sdk/include/os.h \
   /opt/nanox-secure-sdk/target/nanox/include/bolos_target.h \

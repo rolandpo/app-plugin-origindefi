@@ -71,12 +71,12 @@ typedef enum {
 } parameter;
 
 // EDIT THIS: Rename `BOILERPLATE` to be the same as the one initialized in `main.c`.
-extern const uint32_t ORIGIN_ETHER_SELECTORS[NUM_SELECTORS];
+extern const uint32_t ORIGIN_DEFI_SELECTORS[NUM_SELECTORS];
 
 // Shared global memory with Ethereum app. Must be at most 5 * 32 bytes.
 // EDIT THIS: This struct is used by your plugin to save the parameters you parse. You
 // will need to adapt this struct to your plugin.
-typedef struct origin_ether_parameters_t {
+typedef struct origin_defi_parameters_t {
     // For display.
 
     uint8_t amount_sent[INT256_LENGTH];
@@ -106,11 +106,11 @@ typedef struct origin_ether_parameters_t {
 
     // For both parsing and display.
     selector_t selectorIndex;
-} origin_ether_parameters_t;
+} origin_defi_parameters_t;
 
 // Piece of code that will check that the above structure is not bigger than 5 * 32. Do not remove
 // this check.
-_Static_assert(sizeof(origin_ether_parameters_t) <= 5 * 32, "Structure of parameters too big.");
+_Static_assert(sizeof(origin_defi_parameters_t) <= 5 * 32, "Structure of parameters too big.");
 
 void handle_provide_parameter(void *parameters);
 void handle_query_contract_ui(void *parameters);
@@ -119,22 +119,22 @@ void handle_finalize(void *parameters);
 void handle_provide_token(void *parameters);
 void handle_query_contract_id(void *parameters);
 
-static inline void sent_network_token(origin_ether_parameters_t *context) {
+static inline void sent_network_token(origin_defi_parameters_t *context) {
     context->decimals_sent = WEI_TO_ETHER;
     context->tokens_found |= TOKEN_SENT_FOUND;
 }
 
-static inline void received_network_token(origin_ether_parameters_t *context) {
+static inline void received_network_token(origin_defi_parameters_t *context) {
     context->decimals_received = WEI_TO_ETHER;
     context->tokens_found |= TOKEN_RECEIVED_FOUND;
 }
 
-static inline void sent_oeth(origin_ether_parameters_t *context) {
+static inline void sent_oeth(origin_defi_parameters_t *context) {
     context->decimals_sent = OETH_DECIMALS;
     context->tokens_found |= TOKEN_SENT_FOUND;
 }
 
-static inline void received_oeth(origin_ether_parameters_t *context) {
+static inline void received_oeth(origin_defi_parameters_t *context) {
     context->decimals_received = OETH_DECIMALS;
     context->tokens_found |= TOKEN_RECEIVED_FOUND;
 }

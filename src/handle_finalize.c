@@ -1,8 +1,8 @@
-#include "origin_ether_plugin.h"
+#include "origin_defi_plugin.h"
 
 void handle_finalize(void *parameters) {
     ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
-    origin_ether_parameters_t *context = (origin_ether_parameters_t *) msg->pluginContext;
+    origin_defi_parameters_t *context = (origin_defi_parameters_t *) msg->pluginContext;
     msg->numScreens = 2;
     printf_hex_array("destination: ", ADDRESS_LENGTH, msg->pluginSharedRO->txContent->destination);
     if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {

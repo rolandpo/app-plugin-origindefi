@@ -1,5 +1,5 @@
 build/nanox/obj/handle_finalize.o: src/handle_finalize.c \
-  src/origin_ether_plugin.h ethereum-plugin-sdk/include/eth_internals.h \
+  src/origin_defi_plugin.h ethereum-plugin-sdk/include/eth_internals.h \
   /opt/nanox-secure-sdk/include/os.h \
   /opt/nanox-secure-sdk/target/nanox/include/bolos_target.h \
   /opt/nanox-secure-sdk/include/os_debug.h \

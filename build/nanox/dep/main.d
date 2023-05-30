@@ -71,5 +71,5 @@ build/nanox/obj/main.o: src/main.c /opt/nanox-secure-sdk/include/os.h \
   /opt/nanox-secure-sdk/lib_cxng/include/lcx_ecschnorr.h \
   /opt/nanox-secure-sdk/lib_cxng/include/lcx_ecdh.h \
   /opt/nanox-secure-sdk/lib_cxng/include/lcx_crc.h \
-  src/origin_ether_plugin.h ethereum-plugin-sdk/include/eth_internals.h \
+  src/origin_defi_plugin.h ethereum-plugin-sdk/include/eth_internals.h \
   ethereum-plugin-sdk/include/eth_plugin_interface.h

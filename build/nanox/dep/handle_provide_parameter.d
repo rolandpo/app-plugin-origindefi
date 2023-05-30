@@ -1,5 +1,5 @@
 build/nanox/obj/handle_provide_parameter.o: \
-  src/handle_provide_parameter.c src/origin_ether_plugin.h \
+  src/handle_provide_parameter.c src/origin_defi_plugin.h \
   ethereum-plugin-sdk/include/eth_internals.h \
   /opt/nanox-secure-sdk/include/os.h \
   /opt/nanox-secure-sdk/target/nanox/include/bolos_target.h \

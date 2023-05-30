@@ -1,7 +1,7 @@
-#include "origin_ether_plugin.h"
+#include "origin_defi_plugin.h"
 
 // Set UI for the "Send" screen.
-/*static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+/*static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
     uint8_t decimals = 0;
     char *ticker;
 
@@ -40,7 +40,7 @@
                    msg->msgLength);
 }
 
-static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+static void set_receive_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
     uint8_t decimals = 0;
     char *ticker;
     strlcpy(msg->title, "Receive Min", msg->titleLength);
@@ -80,7 +80,7 @@ static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t 
                    msg->msgLength);
 }*/
 
-/*static void set_recipient_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+/*static void set_recipient_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
     strlcpy(msg->title, "Recipient", msg->titleLength);
     msg->msg[0] = '0';
     msg->msg[1] = 'x';
@@ -91,7 +91,7 @@ static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t 
                                   chainid);
 }*/
 
-static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
 
     // set network ticker (ETH, BNB, etc) if needed
     if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
@@ -141,7 +141,7 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *co
 }
 
 // Set UI for "Receive" screen.
-static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+static void set_receive_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
     
      // set network ticker (ETH, BNB, etc) if needed
     if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
@@ -184,13 +184,13 @@ static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t 
 
 // Set UI for "Warning" screen.
 static void set_warning_ui(ethQueryContractUI_t *msg,
-                           const origin_ether_parameters_t *context __attribute__((unused))) {
+                           const origin_defi_parameters_t *context __attribute__((unused))) {
     strlcpy(msg->title, "WARNING", msg->titleLength);
     strlcpy(msg->msg, "Unknown token", msg->msgLength);
 }
 
 // Helper function that returns the enum corresponding to the screen that should be displayed.
-static screens_t get_screen(const ethQueryContractUI_t *msg, const origin_ether_parameters_t *context) {
+static screens_t get_screen(const ethQueryContractUI_t *msg, const origin_defi_parameters_t *context) {
     uint8_t index = msg->screenIndex;
 
     bool token_sent_found = context->tokens_found & TOKEN_SENT_FOUND;
@@ -231,7 +231,7 @@ static screens_t get_screen(const ethQueryContractUI_t *msg, const origin_ether_
 
 void handle_query_contract_ui(void *parameters) {
     ethQueryContractUI_t *msg = (ethQueryContractUI_t *) parameters;
-    origin_ether_parameters_t *context = (origin_ether_parameters_t *) msg->pluginContext;
+    origin_defi_parameters_t *context = (origin_defi_parameters_t *) msg->pluginContext;
     memset(msg->title, 0, msg->titleLength);
     memset(msg->msg, 0, msg->msgLength);
     msg->result = ETH_PLUGIN_RESULT_OK;

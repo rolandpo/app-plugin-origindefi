@@ -6,7 +6,7 @@
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 // EDIT THIS: Put in the number of selectors your plugin is going to support.
-#define NUM_SELECTORS 6
+#define NUM_SELECTORS 15
 #define PARAMETER_LENGTH 32
 
 // Name of the plugin.
@@ -39,7 +39,17 @@ typedef enum {
     ZAPPER_DEPOSIT_SFRXETH,
     VAULT_MINT,
     VAULT_REDEEM,
-    CURVE_EXCHANGE,
+    CURVE_POOL_EXCHANGE,
+    CURVE_POOL_EXCHANGE_UNDERLYING,
+    CURVE_ROUTER_EXCHANGE_MULTIPLE,
+    UNISWAP_ROUTER_EXACT_INPUT,
+    UNISWAP_ROUTER_EXACT_INPUT_SINGLE,
+    FLIPPER_BUY_OUSD_WITH_USDT,
+    FLIPPER_SELL_OUSD_FOR_USDT,
+    FLIPPER_BUY_OUSD_WITH_DAI,
+    FLIPPER_SELL_OUSD_FOR_DAI,
+    FLIPPER_BUY_OUSD_WITH_USDC,
+    FLIPPER_SELL_OUSD_FOR_USDC
 } selector_t;
 
 typedef enum {

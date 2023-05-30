@@ -5,7 +5,7 @@ static void handle_token_sent(ethPluginProvideParameter_t *msg, origin_defi_para
 
     printf_hex_array("Incoming parameter: ", PARAMETER_LENGTH, msg->parameter);
     if (context->selectorIndex == CURVE_POOL_EXCHANGE) {
-        if (memcmp(CURVE_ETHOETH_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
+        if (memcmp(CURVE_OETH_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
             if (msg->parameter[PARAMETER_LENGTH-1] != 0) {
                 printf_hex_array("OETH SELECTED: ",  ADDRESS_LENGTH, OETH_ADDRESS);
                 memcpy(context->contract_address_sent,
@@ -15,6 +15,28 @@ static void handle_token_sent(ethPluginProvideParameter_t *msg, origin_defi_para
                 printf_hex_array("ETH SELECTED: ",  ADDRESS_LENGTH, NULL_ETH_ADDRESS);
                 memcpy(context->contract_address_sent,
                     NULL_ETH_ADDRESS,
+                    ADDRESS_LENGTH);
+            }
+        } else if (memcmp(CURVE_OETH_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) {
+            if (msg->parameter[PARAMETER_LENGTH-1] == 1) {
+                printf_hex_array("DAI SELECTED: ",  ADDRESS_LENGTH, OETH_ADDRESS);
+                memcpy(context->contract_address_sent,
+                    DAI_ADDRESS,
+                    ADDRESS_LENGTH);
+            } else if (msg->parameter[PARAMETER_LENGTH-1] == 2) {
+                printf_hex_array("USDC SELECTED: ",  ADDRESS_LENGTH, NULL_ETH_ADDRESS);
+                memcpy(context->contract_address_sent,
+                    USDC_ADDRESS,
+                    ADDRESS_LENGTH);
+            } else if (msg->parameter[PARAMETER_LENGTH-1] == 3) {
+                printf_hex_array("USDT SELECTED: ",  ADDRESS_LENGTH, NULL_ETH_ADDRESS);
+                memcpy(context->contract_address_sent,
+                    USDT_ADDRESS,
+                    ADDRESS_LENGTH);
+            } else {
+                printf_hex_array("OUSD SELECTED: ",  ADDRESS_LENGTH, NULL_ETH_ADDRESS);
+                memcpy(context->contract_address_sent,
+                    OUSD_ADDRESS,
                     ADDRESS_LENGTH);
             }
         }
@@ -57,20 +79,6 @@ static void handle_min_amount_received(ethPluginProvideParameter_t *msg,
                                    origin_defi_parameters_t *context) {
     memcpy(context->min_amount_received, msg->parameter, PARAMETER_LENGTH);
 }
-
-/*static void handle_min_oeth_received(ethPluginProvideParameter_t *msg,
-                                   origin_defi_parameters_t *context) {
-    memcpy(context->min_oeth_received, msg->parameter, PARAMETER_LENGTH);
-}*/
-
-/*static void handle_min_units_received(ethPluginProvideParameter_t *msg,
-                                   origin_defi_parameters_t *context) {
-    memcpy(context->min_units_received, msg->parameter, PARAMETER_LENGTH);
-}*/
-
-/*static void handle_amount_approved(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
-    memcpy(context->amount_approved, msg->parameter, INT256_LENGTH);
-}*/
 
 // signature: deposit(), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
 static void handle_zapper_deposit_eth(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
@@ -184,26 +192,37 @@ void handle_provide_parameter(void *parameters) {
     msg->result = ETH_PLUGIN_RESULT_OK;
 
     switch (context->selectorIndex) {
-        case ZAPPER_DEPOSIT_ETH: {
+        case ZAPPER_DEPOSIT_ETH:
             handle_zapper_deposit_eth(msg, context);
             break;
-        }
-        case ZAPPER_DEPOSIT_SFRXETH: {
+        case ZAPPER_DEPOSIT_SFRXETH:
             handle_zapper_deposit_sfrxeth(msg, context);
             break;
-        }
-        case VAULT_MINT: {
+        case VAULT_MINT:
             handle_vault_mint(msg, context);
             break;
-        }
-        case VAULT_REDEEM: {
+        case VAULT_REDEEM:
             handle_vault_redeem(msg, context);
             break;
-        }
-        case CURVE_EXCHANGE: {
-            handle_curve_exchange(msg, context);
+        case CURVE_POOL_EXCHANGE:
+        case CURVE_POOL_EXCHANGE_UNDERLYING:
+            handle_curve_pool_exchange(msg, context);
             break;
-        }
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
+            handle_curve_router_exchange(msg, context);
+            break;
+        case UNISWAP_ROUTER_EXACT_INPUT:
+        case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
+            handle_uniswap_swap(msg, context);
+            break;
+        case FLIPPER_BUY_OUSD_WITH_USDT:
+        case FLIPPER_SELL_OUSD_FOR_USDT:
+        case FLIPPER_BUY_OUSD_WITH_DAI:
+        case FLIPPER_SELL_OUSD_FOR_DAI:
+        case FLIPPER_BUY_OUSD_WITH_USDC:
+        case FLIPPER_SELL_OUSD_FOR_USDC:
+            handle_flipper_swap(msg, context);
+            break;
         default:
             PRINTF("Selector Index %d not supported\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;

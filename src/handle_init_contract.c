@@ -58,7 +58,21 @@ void handle_init_contract(void *parameters) {
             context->next_param = AMOUNT_SENT;
             break;
         case CURVE_POOL_EXCHANGE:
+        case CURVE_POOL_EXCHANGE_UNDERLYING:
             context->next_param = TOKEN_SENT;
+            break;
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
+        case UNISWAP_ROUTER_EXACT_INPUT:
+        case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
+            context->next_param = TOKEN_SENT;
+            break;
+        case FLIPPER_BUY_OUSD_WITH_USDT:
+        case FLIPPER_SELL_OUSD_FOR_USDT:
+        case FLIPPER_BUY_OUSD_WITH_DAI:
+        case FLIPPER_SELL_OUSD_FOR_DAI:
+        case FLIPPER_BUY_OUSD_WITH_USDC:
+        case FLIPPER_SELL_OUSD_FOR_USDC:
+            context->next_param = AMOUNT_SENT;
             break;
         // Keep this
         default:

@@ -38,17 +38,88 @@
                    ticker,
                    msg->msg,
                    msg->msgLength);
-}*/
+}
 
-static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+    uint8_t decimals = 0;
+    char *ticker;
+    strlcpy(msg->title, "Receive Min", msg->titleLength);
+
     switch (context->selectorIndex) {
         case ZAPPER_DEPOSIT_ETH:
         case ZAPPER_DEPOSIT_SFRXETH:
+        case VAULT_MINT:
+            decimals = OETH_DECIMALS;
+            ticker = OETH_TICKER;
+            break;
+        case VAULT_REDEEM:
+            decimals = WEI_TO_ETHER;
+            ticker = "UNITS";
+            break;
+        case CURVE_EXCHANGE:
+            if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
+                //strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
+                decimals = WEI_TO_ETHER;
+                ticker = "ETH";
+            } else {
+                decimals = OETH_DECIMALS;
+                ticker = OETH_TICKER;
+            }
+            break;
+        default:
+            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+    }
+
+    amountToString(context->amount_sent,
+                   INT256_LENGTH,
+                   decimals,
+                   ticker,
+                   msg->msg,
+                   msg->msgLength);
+}*/
+
+/*static void set_recipient_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+    strlcpy(msg->title, "Recipient", msg->titleLength);
+    msg->msg[0] = '0';
+    msg->msg[1] = 'x';
+    uint64_t chainid = 0;
+    getEthAddressStringFromBinary(msg->address,
+                                  msg->msg + 2,
+                                  msg->pluginSharedR0->txContent,
+                                  chainid);
+}*/
+
+static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+
+    // set network ticker (ETH, BNB, etc) if needed
+    if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
+        strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
+    }
+
+    if (ADDRESS_IS_OETH(context->contract_address_sent)) {
+        strlcpy(context->ticker_sent, OETH_TICKER, sizeof(context->ticker_sent));
+    }
+
+    switch (context->selectorIndex) {
+        case ZAPPER_DEPOSIT_ETH:
+            strlcpy(msg->title, "Deposit", msg->titleLength);
+            break;
+        case ZAPPER_DEPOSIT_SFRXETH:
+            strlcpy(msg->title, "Deposit", msg->titleLength);
+            strlcpy(context->ticker_sent, SFRXETH_TICKER, sizeof(context->ticker_sent));
+            break;
         case VAULT_MINT:
             strlcpy(msg->title, "Deposit", msg->titleLength);
             break;
         case VAULT_REDEEM:
             strlcpy(msg->title, "Redeem", msg->titleLength);
+            if (memcmp(OETH_VAULT_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
+                strlcpy(context->ticker_sent, OETH_TICKER, sizeof(context->ticker_sent));
+            } else {
+                strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
+            }
             break;
         case CURVE_EXCHANGE:
             strlcpy(msg->title, "Send", msg->titleLength);
@@ -57,11 +128,6 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *co
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
-    }
-
-    // set network ticker (ETH, BNB, etc) if needed
-    if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
-        strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
     }
 
     // Convert to string.
@@ -76,11 +142,27 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *co
 
 // Set UI for "Receive" screen.
 static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t *context) {
+    
+     // set network ticker (ETH, BNB, etc) if needed
+    if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
+        strlcpy(context->ticker_received, msg->network_ticker, sizeof(context->ticker_received));
+    }
+
+    if (ADDRESS_IS_OETH(context->contract_address_received)) {
+        strlcpy(context->ticker_received, OETH_TICKER, sizeof(context->ticker_received));
+    }
+
     switch (context->selectorIndex) {
         case ZAPPER_DEPOSIT_ETH:
         case ZAPPER_DEPOSIT_SFRXETH:
         case VAULT_MINT:
+            strlcpy(msg->title, "Receive Min", msg->titleLength);
+            strlcpy(context->ticker_received, OETH_TICKER, sizeof(context->ticker_received));
+            break;
         case VAULT_REDEEM:
+            strlcpy(msg->title, "Receive Min", msg->titleLength);
+            strlcpy(context->ticker_received, ETH_UNITS_TICKER, sizeof(context->ticker_received));
+            break;
         case CURVE_EXCHANGE:
             strlcpy(msg->title, "Receive Min", msg->titleLength);
             break;
@@ -88,11 +170,6 @@ static void set_receive_ui(ethQueryContractUI_t *msg, origin_ether_parameters_t 
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             return;
-    }
-
-    // set network ticker (ETH, BNB, etc) if needed
-    if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
-        strlcpy(context->ticker_received, msg->network_ticker, sizeof(context->ticker_received));
     }
 
     // Convert to string.
@@ -158,7 +235,6 @@ void handle_query_contract_ui(void *parameters) {
     memset(msg->title, 0, msg->titleLength);
     memset(msg->msg, 0, msg->msgLength);
     msg->result = ETH_PLUGIN_RESULT_OK;
-
     screens_t screen = get_screen(msg, context);
     switch (screen) {
         case SEND_SCREEN:

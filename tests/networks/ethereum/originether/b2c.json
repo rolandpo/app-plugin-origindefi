@@ -40,11 +40,26 @@
             "contractName": "Vyper_contract",
             "selectors": {
                 "0x3df02124": {
-                    "erc20OfInterest": [
-                        "i",
-                        "j"
-                    ],
+                    "erc20OfInterest": [],
                     "method": "exchange",
+                    "plugin": "originether"
+		        }
+	        }
+	    },
+        {
+            "address": "0xe75d77b1865ae93c7eaa3040b038d7aa7bc02f70",
+            "contractName": "OriginDollarVault",
+            "selectors": {
+                "0x156e29f6": {
+                    "erc20OfInterest": [
+                        "_asset"
+                    ],
+                    "method": "mint",
+                    "plugin": "originether"
+		        },
+                "0x7cbc2373": {
+                    "erc20OfInterest": [],
+                    "method": "redeem",
                     "plugin": "originether"
 		        }
 	        }

@@ -7,10 +7,11 @@
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 // EDIT THIS: Put in the number of selectors your plugin is going to support.
 #define NUM_SELECTORS 6
+#define PARAMETER_LENGTH 32
 
 // Name of the plugin.
 // EDIT THIS: Replace with your plugin name.
-#define PLUGIN_NAME "originether"
+#define PLUGIN_NAME "Origin DeFi"
 
 #define TOKEN_SENT_FOUND     1
 #define TOKEN_RECEIVED_FOUND 1 << 1
@@ -21,8 +22,14 @@
 // Ticker used when the token wasn't found in the CAL.
 #define DEFAULT_TICKER ""
 
-#define OETH_TICKER   "OETH"
+#define OETH_TICKER "OETH"
 #define OETH_DECIMALS WEI_TO_ETHER
+
+#define OUSD_TICKER "OUSD"
+
+#define SFRXETH_TICKER "sfrxETH"
+#define FRXETH_TICKER "frxETH"
+#define ETH_UNITS_TICKER "UNITS"
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
@@ -43,8 +50,12 @@ typedef enum {
 } screens_t;
 
 extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
 
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
+#define ADDRESS_IS_OETH(_addr) (!memcmp(_addr, OETH_ADDRESS, ADDRESS_LENGTH))
+//#define ADDRESS_IS_FRXETH(_addr) (!memcmp(_addr, FRXETH_ADDRESS, ADDRESS_LENGTH))
 
 // Enumeration used to parse the smart contract data.
 // EDIT THIS: Adapt the parameter names here.
@@ -115,6 +126,16 @@ static inline void sent_network_token(origin_ether_parameters_t *context) {
 
 static inline void received_network_token(origin_ether_parameters_t *context) {
     context->decimals_received = WEI_TO_ETHER;
+    context->tokens_found |= TOKEN_RECEIVED_FOUND;
+}
+
+static inline void sent_oeth(origin_ether_parameters_t *context) {
+    context->decimals_sent = OETH_DECIMALS;
+    context->tokens_found |= TOKEN_SENT_FOUND;
+}
+
+static inline void received_oeth(origin_ether_parameters_t *context) {
+    context->decimals_received = OETH_DECIMALS;
     context->tokens_found |= TOKEN_RECEIVED_FOUND;
 }
 

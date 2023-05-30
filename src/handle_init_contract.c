@@ -52,13 +52,13 @@ void handle_init_contract(void *parameters) {
             context->next_param = AMOUNT_SENT;
             break;
         case VAULT_MINT:
-            context->next_param = TOKEN_RECEIVED;
+            context->next_param = TOKEN_SENT;
             break;
         case VAULT_REDEEM:
             context->next_param = AMOUNT_SENT;
             break;
         case CURVE_EXCHANGE:
-            context->next_param = TOKEN_RECEIVED;
+            context->next_param = TOKEN_SENT;
             break;
         // Keep this
         default:

@@ -2,18 +2,46 @@
 
 static void handle_token_sent(ethPluginProvideParameter_t *msg, origin_ether_parameters_t *context) {
     memset(context->contract_address_sent, 0, sizeof(context->contract_address_sent));
-    memcpy(context->contract_address_sent,
-           &msg->parameter[PARAMETER_LENGTH - ADDRESS_LENGTH],
-           ADDRESS_LENGTH);
+
+    printf_hex_array("Incoming parameter: ", PARAMETER_LENGTH, msg->parameter);
+    if (context->selectorIndex == CURVE_EXCHANGE) {
+        if (msg->parameter[PARAMETER_LENGTH-1] != 0) {
+            printf_hex_array("OETH SELECTED: ",  ADDRESS_LENGTH, OETH_ADDRESS);
+            memcpy(context->contract_address_sent,
+                OETH_ADDRESS,
+                ADDRESS_LENGTH);
+        } else {
+            printf_hex_array("ETH SELECTED: ",  ADDRESS_LENGTH, NULL_ETH_ADDRESS);
+            memcpy(context->contract_address_sent,
+                NULL_ETH_ADDRESS,
+                ADDRESS_LENGTH);
+        }
+    } else {
+        memcpy(context->contract_address_sent,
+            &msg->parameter[PARAMETER_LENGTH - ADDRESS_LENGTH],
+            ADDRESS_LENGTH);
+    }
     printf_hex_array("TOKEN SENT: ", ADDRESS_LENGTH, context->contract_address_sent);
 }
 
 static void handle_token_received(ethPluginProvideParameter_t *msg,
                                   origin_ether_parameters_t *context) {
     memset(context->contract_address_received, 0, sizeof(context->contract_address_received));
-    memcpy(context->contract_address_received,
+    if (context->selectorIndex == CURVE_EXCHANGE) {
+        if (msg->parameter[PARAMETER_LENGTH-1] != 0) {
+            memcpy(context->contract_address_received,
+                OETH_ADDRESS,
+                ADDRESS_LENGTH);
+        } else {
+            memcpy(context->contract_address_received,
+                NULL_ETH_ADDRESS,
+                ADDRESS_LENGTH);
+        }
+    } else {
+        memcpy(context->contract_address_received,
            &msg->parameter[PARAMETER_LENGTH - ADDRESS_LENGTH],
            ADDRESS_LENGTH);
+    }
     printf_hex_array("TOKEN RECEIVED: ", ADDRESS_LENGTH, context->contract_address_received);
 }
 
@@ -77,7 +105,7 @@ static void handle_vault_mint(ethPluginProvideParameter_t *msg, origin_ether_par
     switch (context->next_param) {
         case TOKEN_SENT:
             handle_token_sent(msg, context);
-            context->next_param = TOKEN_RECEIVED;
+            context->next_param = AMOUNT_SENT;
             break;
         case AMOUNT_SENT:
             handle_amount_sent(msg, context);

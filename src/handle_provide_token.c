@@ -16,6 +16,8 @@ void handle_provide_token(void *parameters) {
                 (char *) msg->item1->token.ticker,
                 sizeof(context->ticker_sent));
         context->tokens_found |= TOKEN_SENT_FOUND;
+    } else if (ADDRESS_IS_OETH(context->contract_address_sent)) {
+        sent_oeth(context);
     } else {
         // CAL did not find the token and token is not ETH.
         context->decimals_sent = DEFAULT_DECIMAL;
@@ -32,10 +34,15 @@ void handle_provide_token(void *parameters) {
                 (char *) msg->item2->token.ticker,
                 sizeof(context->ticker_received));
         context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else if (ADDRESS_IS_OETH(context->contract_address_received)) {
+        received_oeth(context);
+    } else if (context->selectorIndex == VAULT_REDEEM) {
+        context->decimals_received = DEFAULT_DECIMAL;
+        strlcpy(context->ticker_received, "UNITS", sizeof(context->ticker_received));
     } else {
         // CAL did not find the token and token is not ETH.
         context->decimals_received = DEFAULT_DECIMAL;
-        strlcpy(context->ticker_received, DEFAULT_TICKER, sizeof(context->ticker_sent));
+        strlcpy(context->ticker_received, DEFAULT_TICKER, sizeof(context->ticker_received));
         // // We will need an additional screen to display a warning message.
         msg->additionalScreens++;
     }

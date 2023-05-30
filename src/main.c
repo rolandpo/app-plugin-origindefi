@@ -46,6 +46,16 @@ const uint32_t ORIGIN_ETHER_SELECTORS[NUM_SELECTORS] = {
     CURVE_EXCHANGE_SELECTOR,
 };
 
+const uint8_t OETH_ADDRESS[ADDRESS_LENGTH] = {0x85, 0x6c, 0x4e, 0xfb, 0x76, 0xc1, 0xd1,
+                                                      0xae, 0x02, 0xe2, 0x0c, 0xeb, 0x03, 0xa2,
+                                                      0xa6, 0xa0, 0x8b, 0x0b, 0x8d, 0xc3};
+                                                      
+const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH] = {0x39, 0x25, 0x40, 0x33, 0x94, 0x5a, 0xa2,
+                                                      0xe4, 0x80, 0x9c, 0xc2, 0x97, 0x7e, 0x70,
+                                                      0x87, 0xbe, 0xe4, 0x8b, 0xd7, 0xab};
+
+//const uint8_t FRXETH_ADDRESS[ADDRESS_LENGTH] = 0x5E8422345238F34275888049021821E8E08CAa1f;
+
 // Function to dispatch calls from the ethereum app.
 void dispatch_plugin_calls(int message, void *parameters) {
     switch (message) {

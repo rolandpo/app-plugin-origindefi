@@ -26,6 +26,16 @@
 #define OETH_DECIMALS WEI_TO_ETHER
 
 #define OUSD_TICKER "OUSD"
+#define OUSD_DECIMALS WEI_TO_ETHER
+
+#define DAI_TICKER "DAI"
+#define DAI_DECIMALS WEI_TO_ETHER
+
+#define USDC_TICKER "USDC"
+#define USDC_DECIMALS 6
+
+#define USDT_TICKER "USDT"
+#define USDT_DECIMALS 6
 
 #define SFRXETH_TICKER "sfrxETH"
 #define FRXETH_TICKER "frxETH"
@@ -61,10 +71,15 @@ typedef enum {
 
 extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OUSD_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t DAI_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t USDC_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t USDT_ADDRESS[ADDRESS_LENGTH];
+
 extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
-extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
-extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
-extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OUSD_VAULT_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t CURVE_OETH_POOL_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH];
 
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 #define ADDRESS_IS_OETH(_addr) (!memcmp(_addr, OETH_ADDRESS, ADDRESS_LENGTH))

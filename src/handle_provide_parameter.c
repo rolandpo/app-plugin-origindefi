@@ -21,7 +21,7 @@ static void handle_token_sent(ethPluginProvideParameter_t *msg, origin_defi_para
                     PRINTF("Param not supported\n");
                     break;
             }
-        } else if (memcmp(CURVE_OUSD_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) {
+        } else if (memcmp(CURVE_OUSD_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
             switch (msg->parameter[PARAMETER_LENGTH-1]) {
                 case 0:
                     memcpy(context->contract_address_sent,
@@ -75,7 +75,7 @@ static void handle_token_received(ethPluginProvideParameter_t *msg,
                     PRINTF("Param not supported\n");
                     break;
             }
-        } else if (memcmp(CURVE_OUSD_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) {
+        } else if (memcmp(CURVE_OUSD_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
             switch (msg->parameter[PARAMETER_LENGTH-1]) {
                 case 0:
                     memcpy(context->contract_address_received,
@@ -223,8 +223,8 @@ static void handle_curve_pool_exchange(ethPluginProvideParameter_t *msg, origin_
 }
 
 // signature: exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected), curve router: 0x99a58482bd75cbab83b27ec03ca68ff489b5788f
-/*static void handle_curve_router_exchange(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
-    switch (context->next_param) {
+static void handle_curve_router_exchange(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
+    /*switch (context->next_param) {
         case TOKEN_SENT:
             handle_token_sent(msg, context);
             context->next_param = TOKEN_RECEIVED;
@@ -247,11 +247,11 @@ static void handle_curve_pool_exchange(ethPluginProvideParameter_t *msg, origin_
             PRINTF("Param not supported\n");
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
-    }
+    }*/
 }
 
 static void handle_uniswap_exchange(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
-    switch (context->next_param) {
+    /*switch (context->next_param) {
         case TOKEN_SENT:
             handle_token_sent(msg, context);
             context->next_param = TOKEN_RECEIVED;
@@ -274,8 +274,8 @@ static void handle_uniswap_exchange(ethPluginProvideParameter_t *msg, origin_def
             PRINTF("Param not supported\n");
             msg->result = ETH_PLUGIN_RESULT_ERROR;
             break;
-    }
-}*/
+    }*/
+}
 
 static void handle_flipper_exchange(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
     switch (context->next_param) {

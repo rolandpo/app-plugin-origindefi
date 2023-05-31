@@ -1,96 +1,5 @@
 #include "origin_defi_plugin.h"
 
-// Set UI for the "Send" screen.
-/*static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
-    uint8_t decimals = 0;
-    char *ticker;
-
-    switch (context->selectorIndex) {
-        case ZAPPER_DEPOSIT_ETH:
-        case ZAPPER_DEPOSIT_SFRXETH:
-        case VAULT_MINT:
-            strlcpy(msg->title, "Deposit", msg->titleLength);
-            decimals = WEI_TO_ETHER;
-            ticker = "ETH";
-            break;
-        case VAULT_REDEEM:
-            strlcpy(msg->title, "Send", msg->titleLength);
-            decimals = OETH_DECIMALS;
-            ticker = OETH_TICKER;
-            break;
-        case CURVE_EXCHANGE:
-            strlcpy(msg->title, "Send", msg->titleLength);
-            if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
-                strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
-            }
-            decimals = WEI_TO_ETHER;
-            ticker = "ETH";
-            break;
-        default:
-            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            return;
-    }
-
-    amountToString(context->amount_sent,
-                   INT256_LENGTH,
-                   decimals,
-                   ticker,
-                   msg->msg,
-                   msg->msgLength);
-}
-
-static void set_receive_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
-    uint8_t decimals = 0;
-    char *ticker;
-    strlcpy(msg->title, "Receive Min", msg->titleLength);
-
-    switch (context->selectorIndex) {
-        case ZAPPER_DEPOSIT_ETH:
-        case ZAPPER_DEPOSIT_SFRXETH:
-        case VAULT_MINT:
-            decimals = OETH_DECIMALS;
-            ticker = OETH_TICKER;
-            break;
-        case VAULT_REDEEM:
-            decimals = WEI_TO_ETHER;
-            ticker = "UNITS";
-            break;
-        case CURVE_EXCHANGE:
-            if (ADDRESS_IS_NETWORK_TOKEN(context->contract_address_received)) {
-                //strlcpy(context->ticker_sent, msg->network_ticker, sizeof(context->ticker_sent));
-                decimals = WEI_TO_ETHER;
-                ticker = "ETH";
-            } else {
-                decimals = OETH_DECIMALS;
-                ticker = OETH_TICKER;
-            }
-            break;
-        default:
-            PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
-            msg->result = ETH_PLUGIN_RESULT_ERROR;
-            return;
-    }
-
-    amountToString(context->amount_sent,
-                   INT256_LENGTH,
-                   decimals,
-                   ticker,
-                   msg->msg,
-                   msg->msgLength);
-}*/
-
-/*static void set_recipient_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
-    strlcpy(msg->title, "Recipient", msg->titleLength);
-    msg->msg[0] = '0';
-    msg->msg[1] = 'x';
-    uint64_t chainid = 0;
-    getEthAddressStringFromBinary(msg->address,
-                                  msg->msg + 2,
-                                  msg->pluginSharedR0->txContent,
-                                  chainid);
-}*/
-
 static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *context) {
 
     // set network ticker (ETH, BNB, etc) if needed
@@ -101,6 +10,8 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *con
     if (ADDRESS_IS_OETH(context->contract_address_sent)) {
         strlcpy(context->ticker_sent, OETH_TICKER, sizeof(context->ticker_sent));
     }
+
+    strlcpy(msg->title, "Send", msg->titleLength);
 
     switch (context->selectorIndex) {
         case ZAPPER_DEPOSIT_ETH:
@@ -121,8 +32,29 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *con
                 strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
             }
             break;
-        case CURVE_EXCHANGE:
-            strlcpy(msg->title, "Send", msg->titleLength);
+        case CURVE_POOL_EXCHANGE:
+        case CURVE_POOL_EXCHANGE_UNDERLYING:
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
+        case UNISWAP_ROUTER_EXACT_INPUT:
+        case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
+            break;
+        case FLIPPER_BUY_OUSD_WITH_USDT:
+            strlcpy(context->ticker_sent, USDT_TICKER, sizeof(context->ticker_sent));
+            strlcpy(context->decimals_sent, USDT_DECIMALS, sizeof(context->decimals_sent));
+            break;
+        case FLIPPER_BUY_OUSD_WITH_DAI:
+            strlcpy(context->ticker_sent, DAI_TICKER, sizeof(context->ticker_sent));
+            strlcpy(context->decimals_sent, DAI_DECIMALS, sizeof(context->decimals_sent));
+            break;
+        case FLIPPER_BUY_OUSD_WITH_USDC:
+            strlcpy(context->ticker_sent, USDC_TICKER, sizeof(context->ticker_sent));
+            strlcpy(context->decimals_sent, USDC_DECIMALS, sizeof(context->decimals_sent));
+            break;
+        case FLIPPER_SELL_OUSD_FOR_USDT:
+        case FLIPPER_SELL_OUSD_FOR_DAI:
+        case FLIPPER_SELL_OUSD_FOR_USDC:
+            strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
+            strlcpy(context->decimals_sent, OUSD_DECIMALS, sizeof(context->decimals_sent));
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
@@ -152,19 +84,38 @@ static void set_receive_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *
         strlcpy(context->ticker_received, OETH_TICKER, sizeof(context->ticker_received));
     }
 
+    strlcpy(msg->title, "Receive Min", msg->titleLength);
+
     switch (context->selectorIndex) {
         case ZAPPER_DEPOSIT_ETH:
         case ZAPPER_DEPOSIT_SFRXETH:
         case VAULT_MINT:
-            strlcpy(msg->title, "Receive Min", msg->titleLength);
             strlcpy(context->ticker_received, OETH_TICKER, sizeof(context->ticker_received));
             break;
         case VAULT_REDEEM:
-            strlcpy(msg->title, "Receive Min", msg->titleLength);
             strlcpy(context->ticker_received, ETH_UNITS_TICKER, sizeof(context->ticker_received));
             break;
-        case CURVE_EXCHANGE:
-            strlcpy(msg->title, "Receive Min", msg->titleLength);
+        case CURVE_POOL_EXCHANGE:
+        case CURVE_POOL_EXCHANGE_UNDERLYING:
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
+        case UNISWAP_ROUTER_EXACT_INPUT:
+        case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
+            break;
+        case FLIPPER_BUY_OUSD_WITH_USDT:
+        case FLIPPER_BUY_OUSD_WITH_DAI:
+        case FLIPPER_BUY_OUSD_WITH_USDC:
+            strlcpy(context->ticker_received, OUSD_TICKER, sizeof(context->ticker_received));
+            strlcpy(context->decimals_received, OUSD_DECIMALS, sizeof(context->decimals_received));
+            break;
+        case FLIPPER_SELL_OUSD_FOR_USDT:
+            strlcpy(context->ticker_received, USDT_TICKER, sizeof(context->ticker_received));
+            strlcpy(context->decimals_received, USDT_DECIMALS, sizeof(context->decimals_received));
+        case FLIPPER_SELL_OUSD_FOR_DAI:
+            strlcpy(context->ticker_received, DAI_TICKER, sizeof(context->ticker_received));
+            strlcpy(context->decimals_received, DAI_DECIMALS, sizeof(context->decimals_received));
+        case FLIPPER_SELL_OUSD_FOR_USDC:
+            strlcpy(context->ticker_received, USDC_TICKER, sizeof(context->ticker_received));
+            strlcpy(context->decimals_received, USDC_DECIMALS, sizeof(context->decimals_received));
             break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);

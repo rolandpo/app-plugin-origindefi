@@ -19,7 +19,17 @@ void handle_query_contract_id(void *parameters) {
         case VAULT_REDEEM:
             strlcpy(msg->version, "Redeem", msg->versionLength);
             break;
-        case CURVE_EXCHANGE:
+        case CURVE_POOL_EXCHANGE:
+        case CURVE_POOL_EXCHANGE_UNDERLYING:
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
+        case UNISWAP_ROUTER_EXACT_INPUT:
+        case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
+        case FLIPPER_BUY_OUSD_WITH_USDT:
+        case FLIPPER_SELL_OUSD_FOR_USDT:
+        case FLIPPER_BUY_OUSD_WITH_DAI:
+        case FLIPPER_SELL_OUSD_FOR_DAI:
+        case FLIPPER_BUY_OUSD_WITH_USDC:
+        case FLIPPER_SELL_OUSD_FOR_USDC:
             strlcpy(msg->version, "Swap", msg->versionLength);
             break;
         default:

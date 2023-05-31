@@ -62,6 +62,9 @@ typedef enum {
 extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
 
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 #define ADDRESS_IS_OETH(_addr) (!memcmp(_addr, OETH_ADDRESS, ADDRESS_LENGTH))
@@ -74,8 +77,6 @@ typedef enum {
     TOKEN_RECEIVED,
     AMOUNT_SENT,
     MIN_AMOUNT_RECEIVED,
-    //MIN_OETH_RECEIVED,
-    //MIN_UNITS_RECEIVED,
     UNEXPECTED_PARAMETER,
     NONE,
 } parameter;
@@ -90,10 +91,7 @@ typedef struct origin_defi_parameters_t {
     // For display.
 
     uint8_t amount_sent[INT256_LENGTH];
-    //uint8_t min_oeth_received[INT256_LENGTH];
-    //uint8_t min_units_received[INT256_LENGTH];
     uint8_t min_amount_received[INT256_LENGTH];
-    //uint8_t amount_approved[INT256_LENGTH];
     uint8_t contract_address_sent[ADDRESS_LENGTH];
     uint8_t contract_address_received[ADDRESS_LENGTH];
     char ticker_sent[MAX_TICKER_LEN];

@@ -34,15 +34,15 @@ static const uint32_t VAULT_MINT_SELECTOR = 0x156e29f6; // signature: mint(addre
 static const uint32_t VAULT_REDEEM_SELECTOR = 0x7cbc2373; // signature: redeem(uint256 _amount,uint256 _minimumUnitAmount), vault: 0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab
 static const uint32_t CURVE_POOL_EXCHANGE_SELECTOR = 0x3df02124; // signature: exchange(int128 i,int128 j,uint256 _dx,uint256 _min_dy), ETH/OETH curve pool: 0x94b17476a93b3262d87b9a326965d1e91f9c13e7
 static const uint32_t CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR = 0xa6417ed6; // signature: exchange_underlying(int128 i, int128 j, uint256 dx, uint256 min_dy), OUSD/3CRV curve pool: 0x87650d7bbfc3a9f10587d7778206671719d9910d
-static const uint32_t CURVE_ROUTER_EXCHANGE_MULTIPLE_SELECTOR = 0x353ca424; // signature exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected), curve router: 0x99a58482bd75cbab83b27ec03ca68ff489b5788f
-static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR = 0xc04b8d59; // exactInput(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
-static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SINGLE_SELECTOR = 0x414bf389; // exactInputSingle(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
-static const uint32_t FLIPPER_BUY_OUSD_WITH_USDT_SELECTOR = 0x35aa0b96; // buyOusdWithUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_USDT_SELECTOR = 0xcb939053; // sellOusdForUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_BUY_OUSD_WITH_DAI_SELECTOR = 0x5981c746; // buyOusdWithDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_DAI_SELECTOR = 0x8a095a0f; // sellOusdForDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_BUY_OUSD_WITH_USDC_SELECTOR = 0xbfc11ffd; // buyOusdWithUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_USDC_SELECTOR = 0xc6b68169; // sellOusdForUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t CURVE_ROUTER_EXCHANGE_MULTIPLE_SELECTOR = 0x353ca424; // signature: exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected), curve router: 0x99a58482bd75cbab83b27ec03ca68ff489b5788f
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR = 0xc04b8d59; // signature: exactInput(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SINGLE_SELECTOR = 0x414bf389; // signature: exactInputSingle(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
+static const uint32_t FLIPPER_BUY_OUSD_WITH_USDT_SELECTOR = 0x35aa0b96; // signature: buyOusdWithUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t FLIPPER_SELL_OUSD_FOR_USDT_SELECTOR = 0xcb939053; // signature: sellOusdForUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t FLIPPER_BUY_OUSD_WITH_DAI_SELECTOR = 0x5981c746; // signature: buyOusdWithDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t FLIPPER_SELL_OUSD_FOR_DAI_SELECTOR = 0x8a095a0f; // signature: sellOusdForDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t FLIPPER_BUY_OUSD_WITH_USDC_SELECTOR = 0xbfc11ffd; // signature: buyOusdWithUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t FLIPPER_SELL_OUSD_FOR_USDC_SELECTOR = 0xc6b68169; // signature: sellOusdForUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
 
 // contract address check for:
 // VAULT_MINT_SELECTOR
@@ -74,10 +74,30 @@ const uint32_t ORIGIN_DEFI_SELECTORS[NUM_SELECTORS] = {
 const uint8_t OETH_ADDRESS[ADDRESS_LENGTH] = {0x85, 0x6c, 0x4e, 0xfb, 0x76, 0xc1, 0xd1,
                                                       0xae, 0x02, 0xe2, 0x0c, 0xeb, 0x03, 0xa2,
                                                       0xa6, 0xa0, 0x8b, 0x0b, 0x8d, 0xc3};
+
+const uint8_t DAI_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+const uint8_t USDC_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+const uint8_t USDT_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
                                                       
 const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH] = {0x39, 0x25, 0x40, 0x33, 0x94, 0x5a, 0xa2,
                                                       0xe4, 0x80, 0x9c, 0xc2, 0x97, 0x7e, 0x70,
                                                       0x87, 0xbe, 0xe4, 0x8b, 0xd7, 0xab};
+
+const uint8_t CURVE_OETH_POOL_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                                                  
+const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 //const uint8_t FRXETH_ADDRESS[ADDRESS_LENGTH] = 0x5E8422345238F34275888049021821E8E08CAa1f;
 

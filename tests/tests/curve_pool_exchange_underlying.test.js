@@ -26,7 +26,7 @@ nano_models.forEach(function(model) {
     serializedTx,
   );
 
-  const right_clicks = model.letter === 'S' ? 9 : 5;
+  const right_clicks = model.letter === 'S' ? 11 : 5;
 
   // Wait for the application to actually load and parse the transaction
   await waitForAppScreen(sim);
@@ -37,14 +37,14 @@ nano_models.forEach(function(model) {
   }));
 });
 
-// Test from replayed transaction: https://etherscan.io/tx/0xee3caa668e5cc936aab2263ff88485864f7c589fa8cfa5839858858452b654f7
+// Test from replayed transaction: https://etherscan.io/tx/0x7596c9b60e74bc0d877b363cd8b4a1e33651abc3b1c85a95eb46ae6ea1f002e7
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
   jest.setTimeout(100000)
-  test('[Nano ' + model.letter + '] Exchange ETH for OETH', zemu(model, async (sim, eth) => {
+  test('[Nano ' + model.letter + '] Exchange OUSD for USDC', zemu(model, async (sim, eth) => {
 
-  // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0xee3caa668e5cc936aab2263ff88485864f7c589fa8cfa5839858858452b654f7
-  const serializedTx = txFromEtherscan("0x02f8f90105843b9aca00852152e8d9c88302d24a9494b17476a93b3262d87b9a326965d1e91f9c13e788429d069189e00000b8843df0212400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000429d069189e00000000000000000000000000000000000000000000000000000429059f4c8f1460bc001a0e8e0485b020454731eb65e905ecd318c82d9f44c0e3adc84a81e4662464c1f89a02d8bfb04fe59a1a43009603eb481351ce6f3549778afe36757142196ef36ffe3");
+  // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x7596c9b60e74bc0d877b363cd8b4a1e33651abc3b1c85a95eb46ae6ea1f002e7
+  const serializedTx = txFromEtherscan("0x02f8f101098459682f0085051daca6e9830645bd9487650d7bbfc3a9f10587d7778206671719d9910d80b884a6417ed60000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000039ffd39a76f011e4dc200000000000000000000000000000000000000000000000000000003f84eb690c001a093d7bd2825766f775ca9f97e597904fc6bcc007eac206b3329bc688486f0099fa01d8f2718d2c2fdc7f208795e06d0d6a6862aa7c24d2a2afcac9929ee55159e47");
 
   const tx = eth.signTransaction(
     "44'/60'/0'/0",
@@ -56,61 +56,58 @@ nano_models.forEach(function(model) {
   // Wait for the application to actually load and parse the transaction
   await waitForAppScreen(sim);
   // Navigate the display by pressing the right button `right_clicks` times, then pressing both buttons to accept the transaction.
-  await sim.navigateAndCompareSnapshots('.', model.name + '_curve_exchange_eth_for_oeth', [right_clicks, 0]);
+  await sim.navigateAndCompareSnapshots('.', model.name + '_curve_pool_exchange_ousd_for_usdc', [right_clicks, 0]);
 
   await tx;
   }));
 });
 
-// Test from constructed transaction
+// Test from replayed transaction: https://etherscan.io/tx/0x97a4abae75f2ec4450dfd0a5fdfb2b88605b92c61e12a7124f663a7a0f48b80d
 // EDIT THIS: build your own test
-/*nano_models.forEach(function(model) {
-  jest.setTimeout(20000)
-  test('[Nano ' + model.letter + '] Swap Exact Eth For Tokens', zemu(model, async (sim, eth) => {
-  const contract = new ethers.Contract(contractAddr, abi);
+nano_models.forEach(function(model) {
+  jest.setTimeout(100000)
+  test('[Nano ' + model.letter + '] Exchange OUSD for USDT', zemu(model, async (sim, eth) => {
 
-  // Constants used to create the transaction
-  // EDIT THIS: Remove what you don't need
-  const amountOutMin = parseUnits("28471151959593036279", 'wei');
-  const WETH = "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2";
-  const SUSHI = "0x6b3595068778dd592e39a122f4f5a5cf09c90fe2";
-  const path = [WETH, SUSHI];
-  const deadline = Number(1632843280);
-  // We set beneficiary to the default address of the emulator, so it maches sender address
-  const beneficiary = SPECULOS_ADDRESS;
-
-  // EDIT THIS: adapt the signature to your method
-  // signature: swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline)
-  // EDIT THIS: don't call `swapExactETHForTokens` but your own method and adapt the arguments.
-  const {data} = await contract.populateTransaction.swapExactETHForTokens(amountOutMin, path, beneficiary ,deadline);
-
-  // Get the generic transaction template
-  let unsignedTx = genericTx;
-  // Modify `to` to make it interact with the contract
-  unsignedTx.to = contractAddr;
-  // Modify the attached data
-  unsignedTx.data = data;
-  // EDIT THIS: get rid of this if you don't wish to modify the `value` field.
-  // Modify the number of ETH sent
-  unsignedTx.value = parseEther("0.1");
-
-  // Create serializedTx and remove the "0x" prefix
-  const serializedTx = ethers.utils.serializeTransaction(unsignedTx).slice(2);
+  // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x97a4abae75f2ec4450dfd0a5fdfb2b88605b92c61e12a7124f663a7a0f48b80d
+  const serializedTx = txFromEtherscan("0x02f8f1011f8405f5e1008507f6e455a3830653f49487650d7bbfc3a9f10587d7778206671719d9910d80b884a6417ed6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000003f870857a3e0e380000000000000000000000000000000000000000000000000000000000045a0339b0c080a0465b0d87bdf116f2604083add9e06e2d3816c282f1af7abc8b6b30ef8caa7ab5a041a33d436ab8368136e89fd8e79b70f7842bd0467fccb9373d528c40de7a8cf5");
 
   const tx = eth.signTransaction(
     "44'/60'/0'/0",
-    serializedTx
+    serializedTx,
   );
 
   const right_clicks = model.letter === 'S' ? 7 : 5;
 
   // Wait for the application to actually load and parse the transaction
   await waitForAppScreen(sim);
-  // Navigate the display by pressing the right button 10 times, then pressing both buttons to accept the transaction.
-  // EDIT THIS: modify `10` to fix the number of screens you are expecting to navigate through.
-  await sim.navigateAndCompareSnapshots('.', model.name + '_swap_exact_eth_for_tokens', [right_clicks, 0]);
+  // Navigate the display by pressing the right button `right_clicks` times, then pressing both buttons to accept the transaction.
+  await sim.navigateAndCompareSnapshots('.', model.name + '_curve_pool_exchange_ousd_for_usdt', [right_clicks, 0]);
 
   await tx;
   }));
-});*/
+});
 
+// Test from replayed transaction: https://etherscan.io/tx/0xff98b29afe1fbf6a1134d903f82bfb8888dc9428ea81b27a7b8f382d28dcbb8f
+// EDIT THIS: build your own test
+nano_models.forEach(function(model) {
+  jest.setTimeout(100000)
+  test('[Nano ' + model.letter + '] Exchange DAI for OUSD', zemu(model, async (sim, eth) => {
+
+  // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0xff98b29afe1fbf6a1134d903f82bfb8888dc9428ea81b27a7b8f382d28dcbb8f
+  const serializedTx = txFromEtherscan("0xf8ec8201d78504c13cddf783065b7c9487650d7bbfc3a9f10587d7778206671719d9910d80b884a6417ed60000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000370ea0d47cf61a800000000000000000000000000000000000000000000000003704cf2575a113ff000025a04fb9946c7b7a8515cea0110fcb8df7d1ba1cf4518dc9451661a836fa4db466f4a0600335c825cc727fa9988df68165358d579026f96ae76870acb42497a90518d3");
+
+  const tx = eth.signTransaction(
+    "44'/60'/0'/0",
+    serializedTx,
+  );
+
+  const right_clicks = model.letter === 'S' ? 7 : 5;
+
+  // Wait for the application to actually load and parse the transaction
+  await waitForAppScreen(sim);
+  // Navigate the display by pressing the right button `right_clicks` times, then pressing both buttons to accept the transaction.
+  await sim.navigateAndCompareSnapshots('.', model.name + '_curve_pool_exchange_dai_for_ousd', [right_clicks, 0]);
+
+  await tx;
+  }));
+});

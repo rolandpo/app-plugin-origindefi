@@ -47,7 +47,7 @@
 	        }
 	    },
         {
-            "address": "0x99a58482BD75cbab83b27EC03CA68fF489b5788f",
+            "address": "0x99a58482bd75cbab83b27ec03ca68ff489b5788f",
             "contractName": "Curve router",
             "selectors": {
                 "0x353ca424": {
@@ -79,7 +79,7 @@
 	        }
 	    },
         {
-            "address": "0xcecaD69d7D4Ed6D52eFcFA028aF8732F27e08F70",
+            "address": "0xcecad69d7d4ed6d52efcfa028af8732f27e08f70",
             "contractName": "OriginDollarFlipper",
             "selectors": {
                 "0x35aa0b96": {
@@ -124,7 +124,11 @@
                     "plugin": "origindefi"
 		        },
                 "0x414bf389": {
-                    "erc20OfInterest": [],
+                    "erc20OfInterest": [
+                        "params.tokenIn",
+                        "params.tokenOut"
+
+                    ],
                     "method": "exactInputSingle",
                     "plugin": "origindefi"
 		        }
@@ -133,6 +137,17 @@
         {
             "address": "0x87650d7bbfc3a9f10587d7778206671719d9910d",
             "contractName": "OUSD/3CRV Curve pool",
+            "selectors": {
+                "0xa6417ed6": {
+                    "erc20OfInterest": [],
+                    "method": "exchange_underlying",
+                    "plugin": "origindefi"
+		        }
+	        }
+	    },
+        {
+            "address": "0xd632f22692fac7611d2aa1c0d552930d43caed3b",
+            "contractName": "FRAX/3CRV Curve pool",
             "selectors": {
                 "0xa6417ed6": {
                     "erc20OfInterest": [],

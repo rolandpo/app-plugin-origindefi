@@ -50,7 +50,7 @@ nano_models.forEach(function(model) {
     serializedTx,
   );
 
-  const right_clicks = model.letter === 'S' ? 9 : 6;
+  const right_clicks = model.letter === 'S' ? 6 : 5;
 
   // Wait for the application to actually load and parse the transaction
   await waitForAppScreen(sim);

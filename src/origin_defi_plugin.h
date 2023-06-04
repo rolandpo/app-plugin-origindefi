@@ -38,38 +38,38 @@
 #define USDT_DECIMALS 6
 
 #define SFRXETH_TICKER "sfrxETH"
-#define FRXETH_TICKER "frxETH"
-#define ETH_UNITS_TICKER "UNITS"
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
 // EDIT THIS: Change the naming (`selector_t`), and add your selector names.
 typedef enum {
-    ZAPPER_DEPOSIT_ETH,
-    ZAPPER_DEPOSIT_SFRXETH,
-    VAULT_MINT,
+    ZAPPER_DEPOSIT_ETH, // passed
+    ZAPPER_DEPOSIT_SFRXETH, // passed
+    VAULT_MINT, // passed
     VAULT_REDEEM,
-    CURVE_POOL_EXCHANGE,
-    CURVE_POOL_EXCHANGE_UNDERLYING,
-    CURVE_ROUTER_EXCHANGE_MULTIPLE,
+    CURVE_POOL_EXCHANGE, // passed
+    CURVE_POOL_EXCHANGE_UNDERLYING, // passed
+    CURVE_ROUTER_EXCHANGE_MULTIPLE, // passed
     UNISWAP_ROUTER_EXACT_INPUT,
-    UNISWAP_ROUTER_EXACT_INPUT_SINGLE,
-    FLIPPER_BUY_OUSD_WITH_USDT,
-    FLIPPER_SELL_OUSD_FOR_USDT,
-    FLIPPER_BUY_OUSD_WITH_DAI,
-    FLIPPER_SELL_OUSD_FOR_DAI,
-    FLIPPER_BUY_OUSD_WITH_USDC,
-    FLIPPER_SELL_OUSD_FOR_USDC
+    UNISWAP_ROUTER_EXACT_INPUT_SINGLE, // passed
+    FLIPPER_BUY_OUSD_WITH_USDT, //passed/d
+    FLIPPER_SELL_OUSD_FOR_USDT, //passed/d
+    FLIPPER_BUY_OUSD_WITH_DAI, //passed/d
+    FLIPPER_SELL_OUSD_FOR_DAI, //passed/d
+    FLIPPER_BUY_OUSD_WITH_USDC, //passed/d
+    FLIPPER_SELL_OUSD_FOR_USDC //passed/d
 } selector_t;
 
 typedef enum {
     SEND_SCREEN,
     RECEIVE_SCREEN,
     WARN_SCREEN,
+    BENEFICIARY_SCREEN,
     ERROR,
 } screens_t;
 
 extern const uint8_t NULL_ETH_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t STETH_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t OETH_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t OUSD_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t DAI_ADDRESS[ADDRESS_LENGTH];
@@ -83,6 +83,10 @@ extern const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH];
 
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 #define ADDRESS_IS_OETH(_addr) (!memcmp(_addr, OETH_ADDRESS, ADDRESS_LENGTH))
+#define ADDRESS_IS_OUSD(_addr) (!memcmp(_addr, OUSD_ADDRESS, ADDRESS_LENGTH))
+#define ADDRESS_IS_DAI(_addr) (!memcmp(_addr, DAI_ADDRESS, ADDRESS_LENGTH))
+#define ADDRESS_IS_USDC(_addr) (!memcmp(_addr, USDC_ADDRESS, ADDRESS_LENGTH))
+#define ADDRESS_IS_USDT(_addr) (!memcmp(_addr, USDT_ADDRESS, ADDRESS_LENGTH))
 //#define ADDRESS_IS_FRXETH(_addr) (!memcmp(_addr, FRXETH_ADDRESS, ADDRESS_LENGTH))
 
 // Enumeration used to parse the smart contract data.
@@ -90,8 +94,11 @@ extern const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH];
 typedef enum {
     TOKEN_SENT,
     TOKEN_RECEIVED,
+    TOKEN_RECEIVED_REST,
     AMOUNT_SENT,
     MIN_AMOUNT_RECEIVED,
+    BENEFICIARY,
+    PATH_LENGTH,
     UNEXPECTED_PARAMETER,
     NONE,
 } parameter;
@@ -109,6 +116,7 @@ typedef struct origin_defi_parameters_t {
     uint8_t min_amount_received[INT256_LENGTH];
     uint8_t contract_address_sent[ADDRESS_LENGTH];
     uint8_t contract_address_received[ADDRESS_LENGTH];
+    uint8_t beneficiary[ADDRESS_LENGTH];
     char ticker_sent[MAX_TICKER_LEN];
     char ticker_received[MAX_TICKER_LEN];
 
@@ -122,8 +130,9 @@ typedef struct origin_defi_parameters_t {
 
     // For parsing data.
     uint8_t next_param;  // Set to be the next param we expect to parse.
+    uint8_t counter;
     //uint16_t checkpoint;
-    //uint16_t offset;     // Offset at which the array or struct starts.
+    uint16_t offset;
     //bool go_to_offset;   // If set, will force the parsing to iterate through parameters until
                          // `offset` is reached.
 
@@ -142,6 +151,50 @@ void handle_finalize(void *parameters);
 void handle_provide_token(void *parameters);
 void handle_query_contract_id(void *parameters);
 
+static inline check_token_sent(origin_defi_parameters_t *context) {
+    if (ADDRESS_IS_OETH(context->contract_address_sent)) {
+        context->decimals_sent = OETH_DECIMALS;
+        context->tokens_found |= TOKEN_SENT_FOUND;
+    } else if (ADDRESS_IS_OUSD(context->contract_address_sent)) {
+        context->decimals_sent = OUSD_DECIMALS;
+        context->tokens_found |= TOKEN_SENT_FOUND;
+    } else if (ADDRESS_IS_DAI(context->contract_address_sent)) {
+        context->decimals_sent = DAI_DECIMALS;
+        context->tokens_found |= TOKEN_SENT_FOUND;
+    } else if (ADDRESS_IS_USDC(context->contract_address_sent)) {
+        context->decimals_sent = USDC_DECIMALS;
+        context->tokens_found |= TOKEN_SENT_FOUND;
+    } else if (ADDRESS_IS_USDT(context->contract_address_sent)) {
+        context->decimals_sent = USDT_DECIMALS;
+        context->tokens_found |= TOKEN_SENT_FOUND;
+    } else {
+        return false;
+    }
+    return true;
+}
+
+static inline check_token_received(origin_defi_parameters_t *context) {
+    if (ADDRESS_IS_OETH(context->contract_address_received)) {
+        context->decimals_received = OETH_DECIMALS;
+        context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else if (ADDRESS_IS_OUSD(context->contract_address_received)) {
+        context->decimals_received = OUSD_DECIMALS;
+        context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else if (ADDRESS_IS_DAI(context->contract_address_received)) {
+        context->decimals_received = DAI_DECIMALS;
+        context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else if (ADDRESS_IS_USDC(context->contract_address_received)) {
+        context->decimals_received = USDC_DECIMALS;
+        context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else if (ADDRESS_IS_USDT(context->contract_address_received)) {
+        context->decimals_received = USDT_DECIMALS;
+        context->tokens_found |= TOKEN_RECEIVED_FOUND;
+    } else {
+        return false;
+    }
+    return true;
+}
+
 static inline void sent_network_token(origin_defi_parameters_t *context) {
     context->decimals_sent = WEI_TO_ETHER;
     context->tokens_found |= TOKEN_SENT_FOUND;
@@ -149,16 +202,6 @@ static inline void sent_network_token(origin_defi_parameters_t *context) {
 
 static inline void received_network_token(origin_defi_parameters_t *context) {
     context->decimals_received = WEI_TO_ETHER;
-    context->tokens_found |= TOKEN_RECEIVED_FOUND;
-}
-
-static inline void sent_oeth(origin_defi_parameters_t *context) {
-    context->decimals_sent = OETH_DECIMALS;
-    context->tokens_found |= TOKEN_SENT_FOUND;
-}
-
-static inline void received_oeth(origin_defi_parameters_t *context) {
-    context->decimals_received = OETH_DECIMALS;
     context->tokens_found |= TOKEN_RECEIVED_FOUND;
 }
 

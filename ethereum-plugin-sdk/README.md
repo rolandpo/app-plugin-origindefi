@@ -1,3 +1,7 @@
+# Ledger Origin DeFi Plugin
+
+This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing an OUSD or OETH transaction on their respective dapps.
+
 # ethereum-plugin-sdk
 
 This repository is meant to be linked as submodule and used in external plugins working with [app-ethereum](https://github.com/LedgerHQ/app-ethereum).

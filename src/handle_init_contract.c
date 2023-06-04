@@ -46,7 +46,7 @@ void handle_init_contract(void *parameters) {
     // to parse.
     switch (context->selectorIndex) {
         case ZAPPER_DEPOSIT_ETH:
-            context->next_param = MIN_AMOUNT_RECEIVED;
+            context->next_param = NONE;
             break;
         case ZAPPER_DEPOSIT_SFRXETH:
             context->next_param = AMOUNT_SENT;
@@ -59,10 +59,20 @@ void handle_init_contract(void *parameters) {
             break;
         case CURVE_POOL_EXCHANGE:
         case CURVE_POOL_EXCHANGE_UNDERLYING:
+            if (memcmp(CURVE_OETH_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0 || memcmp(CURVE_OUSD_POOL_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
+                context->next_param = TOKEN_SENT;
+                break;
+            }
+            PRINTF("Missing selectorIndex: %d\n", context->selectorIndex);
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            return;
+        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
             context->next_param = TOKEN_SENT;
             break;
-        case CURVE_ROUTER_EXCHANGE_MULTIPLE:
         case UNISWAP_ROUTER_EXACT_INPUT:
+            context->skip += 2;
+            context->next_param = BENEFICIARY;
+            break;
         case UNISWAP_ROUTER_EXACT_INPUT_SINGLE:
             context->next_param = TOKEN_SENT;
             break;

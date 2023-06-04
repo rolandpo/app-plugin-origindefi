@@ -28,21 +28,21 @@
 // EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
 //static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR = 0x7ff36ab5;
 //static const uint32_t BOILERPLATE_DUMMY_SELECTOR_2 = 0x13374242;
-static const uint32_t ZAPPER_DEPOSIT_ETH_SELECTOR = 0xd0e30db0; // signature: deposit(), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
-static const uint32_t ZAPPER_DEPOSIT_SFRXETH_SELECTOR = 0xd443e97d; // signature: depositSFRXETH(uint256 amount,uint256 minOETH), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
-static const uint32_t VAULT_MINT_SELECTOR = 0x156e29f6; // signature: mint(address _asset,uint256 _amount,uint256 _minimumOusdAmount), vault: 0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab
-static const uint32_t VAULT_REDEEM_SELECTOR = 0x7cbc2373; // signature: redeem(uint256 _amount,uint256 _minimumUnitAmount), vault: 0x39254033945AA2E4809Cc2977E7087BEE48bd7Ab
-static const uint32_t CURVE_POOL_EXCHANGE_SELECTOR = 0x3df02124; // signature: exchange(int128 i,int128 j,uint256 _dx,uint256 _min_dy), ETH/OETH curve pool: 0x94b17476a93b3262d87b9a326965d1e91f9c13e7
-static const uint32_t CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR = 0xa6417ed6; // signature: exchange_underlying(int128 i, int128 j, uint256 dx, uint256 min_dy), OUSD/3CRV curve pool: 0x87650d7bbfc3a9f10587d7778206671719d9910d
-static const uint32_t CURVE_ROUTER_EXCHANGE_MULTIPLE_SELECTOR = 0x353ca424; // signature: exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected), curve router: 0x99a58482bd75cbab83b27ec03ca68ff489b5788f
-static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR = 0xc04b8d59; // signature: exactInput(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
-static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SINGLE_SELECTOR = 0x414bf389; // signature: exactInputSingle(tuple params), uniswap router: 0xe592427a0aece92de3edee1f18e0157c05861564
-static const uint32_t FLIPPER_BUY_OUSD_WITH_USDT_SELECTOR = 0x35aa0b96; // signature: buyOusdWithUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_USDT_SELECTOR = 0xcb939053; // signature: sellOusdForUsdt(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_BUY_OUSD_WITH_DAI_SELECTOR = 0x5981c746; // signature: buyOusdWithDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_DAI_SELECTOR = 0x8a095a0f; // signature: sellOusdForDai(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_BUY_OUSD_WITH_USDC_SELECTOR = 0xbfc11ffd; // signature: buyOusdWithUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
-static const uint32_t FLIPPER_SELL_OUSD_FOR_USDC_SELECTOR = 0xc6b68169; // signature: sellOusdForUsdc(uint256 amount), flipper: 0xcecad69d7d4ed6d52efcfa028af8732f27e08f70
+static const uint32_t ZAPPER_DEPOSIT_ETH_SELECTOR = 0xd0e30db0; // deposit(), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
+static const uint32_t ZAPPER_DEPOSIT_SFRXETH_SELECTOR = 0xd443e97d; // depositSFRXETH(uint256 amount,uint256 minOETH)
+static const uint32_t VAULT_MINT_SELECTOR = 0x156e29f6; // mint(address _asset,uint256 _amount,uint256 _minimumOusdAmount)
+static const uint32_t VAULT_REDEEM_SELECTOR = 0x7cbc2373; // redeem(uint256 _amount,uint256 _minimumUnitAmount)
+static const uint32_t CURVE_POOL_EXCHANGE_SELECTOR = 0x3df02124; // exchange(int128 i,int128 j,uint256 _dx,uint256 _min_dy)
+static const uint32_t CURVE_POOL_EXCHANGE_UNDERLYING_SELECTOR = 0xa6417ed6; // exchange_underlying(int128 i, int128 j, uint256 dx, uint256 min_dy)
+static const uint32_t CURVE_ROUTER_EXCHANGE_MULTIPLE_SELECTOR = 0x353ca424; // exchange_multiple(address[9] _route,uint256[3][4] _swap_params,uint256 _amount,uint256 _expected)
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SELECTOR = 0xc04b8d59; // exactInput(tuple params)
+static const uint32_t UNISWAP_ROUTER_EXACT_INPUT_SINGLE_SELECTOR = 0x414bf389; // exactInputSingle(tuple params)
+static const uint32_t FLIPPER_BUY_OUSD_WITH_USDT_SELECTOR = 0x35aa0b96; // buyOusdWithUsdt(uint256 amount)
+static const uint32_t FLIPPER_SELL_OUSD_FOR_USDT_SELECTOR = 0xcb939053; // sellOusdForUsdt(uint256 amount)
+static const uint32_t FLIPPER_BUY_OUSD_WITH_DAI_SELECTOR = 0x5981c746; // buyOusdWithDai(uint256 amount)
+static const uint32_t FLIPPER_SELL_OUSD_FOR_DAI_SELECTOR = 0x8a095a0f; // sellOusdForDai(uint256 amount)
+static const uint32_t FLIPPER_BUY_OUSD_WITH_USDC_SELECTOR = 0xbfc11ffd; // buyOusdWithUsdc(uint256 amount)
+static const uint32_t FLIPPER_SELL_OUSD_FOR_USDC_SELECTOR = 0xc6b68169; // sellOusdForUsdc(uint256 amount)
 
 // contract address check for:
 // VAULT_MINT_SELECTOR
@@ -71,39 +71,25 @@ const uint32_t ORIGIN_DEFI_SELECTORS[NUM_SELECTORS] = {
     FLIPPER_SELL_OUSD_FOR_USDC_SELECTOR
 };
 
-const uint8_t OETH_ADDRESS[ADDRESS_LENGTH] = {0x85, 0x6c, 0x4e, 0xfb, 0x76, 0xc1, 0xd1,
-                                                      0xae, 0x02, 0xe2, 0x0c, 0xeb, 0x03, 0xa2,
-                                                      0xa6, 0xa0, 0x8b, 0x0b, 0x8d, 0xc3};
+const uint8_t OETH_ADDRESS[ADDRESS_LENGTH] = {0x85, 0x6c, 0x4e, 0xfb, 0x76, 0xc1, 0xd1, 0xae, 0x02, 0xe2, 0x0c, 0xeb, 0x03, 0xa2, 0xa6, 0xa0, 0x8b, 0x0b, 0x8d, 0xc3};
 
-const uint8_t DAI_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t STETH_ADDRESS[ADDRESS_LENGTH] = {0xae, 0x7a, 0xb9, 0x65, 0x20, 0xde, 0x3a, 0x18, 0xe5, 0xe1, 0x11, 0xb5, 0xea, 0xab, 0x09, 0x53, 0x12, 0xd7, 0xfe, 0x84};
 
-const uint8_t USDC_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t OUSD_ADDRESS[ADDRESS_LENGTH] = {0x2a, 0x8e, 0x1e, 0x67, 0x6e, 0xc2, 0x38, 0xd8, 0xa9, 0x92, 0x30, 0x7b, 0x49, 0x5b, 0x45, 0xb3, 0xfe, 0xaa, 0x5e, 0x86};
 
-const uint8_t USDT_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t DAI_ADDRESS[ADDRESS_LENGTH] = {0x6b, 0x17, 0x54, 0x74, 0xe8, 0x90, 0x94, 0xc4, 0x4d, 0xa9, 0x8b, 0x95, 0x4e, 0xed, 0xea, 0xc4, 0x95, 0x27, 0x1d, 0x0f};
+
+const uint8_t USDC_ADDRESS[ADDRESS_LENGTH] = {0xa0, 0xb8, 0x69, 0x91, 0xc6, 0x21, 0x8b, 0x36, 0xc1, 0xd1, 0x9d, 0x4a, 0x2e, 0x9e, 0xb0, 0xce, 0x36, 0x06, 0xeb, 0x48};
+
+const uint8_t USDT_ADDRESS[ADDRESS_LENGTH] = {0xda, 0xc1, 0x7f, 0x95, 0x8d, 0x2e, 0xe5, 0x23, 0xa2, 0x20, 0x62, 0x06, 0x99, 0x45, 0x97, 0xc1, 0x3d, 0x83, 0x1e, 0xc7};
                                                       
-const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH] = {0x39, 0x25, 0x40, 0x33, 0x94, 0x5a, 0xa2,
-                                                      0xe4, 0x80, 0x9c, 0xc2, 0x97, 0x7e, 0x70,
-                                                      0x87, 0xbe, 0xe4, 0x8b, 0xd7, 0xab};
+const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH] = {0x39, 0x25, 0x40, 0x33, 0x94, 0x5a, 0xa2, 0xe4, 0x80, 0x9c, 0xc2, 0x97, 0x7e, 0x70, 0x87, 0xbe, 0xe4, 0x8b, 0xd7, 0xab};
 
-const uint8_t OUSD_VAULT_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t OUSD_VAULT_ADDRESS[ADDRESS_LENGTH] = {0xe7, 0x5d, 0x77, 0xb1, 0x86, 0x5a, 0xe9, 0x3c, 0x7e, 0xaa, 0x30, 0x40, 0xb0, 0x38, 0xd7, 0xaa, 0x7b, 0xc0, 0x2f, 0x70};
 
-const uint8_t CURVE_OETH_POOL_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-                                                  
-const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+const uint8_t CURVE_OETH_POOL_ADDRESS[ADDRESS_LENGTH] = {0x94, 0xb1, 0x74, 0x76, 0xa9, 0x3b, 0x32, 0x62, 0xd8, 0x7b, 0x9a, 0x32, 0x69, 0x65, 0xd1, 0xe9, 0x1f, 0x9c, 0x13, 0xe7};
 
-//const uint8_t FRXETH_ADDRESS[ADDRESS_LENGTH] = 0x5E8422345238F34275888049021821E8E08CAa1f;
+const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH] = {0x87, 0x65, 0x0d, 0x7b, 0xbf, 0xc3, 0xa9, 0xf1, 0x05, 0x87, 0xd7, 0x77, 0x82, 0x06, 0x67, 0x17, 0x19, 0xd9, 0x91, 0x0d};
 
 // Function to dispatch calls from the ethereum app.
 void dispatch_plugin_calls(int message, void *parameters) {

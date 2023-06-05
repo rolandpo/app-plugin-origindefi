@@ -87,7 +87,7 @@ cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-orig
 
 To test the plugin go to the tests folder from the "app-plugin-origindefi" and run the script "test"
 ```shell
-cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-1inch
+cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
 yarn test                       # run the script test
 ```
 

@@ -57,16 +57,16 @@ Smart contracts covered by this plugin are:
 |mint  | 0x156e29f6| <table>  <tbody>  <tr><td><code>address _asset</code></td></tr> <tr><td><code>,uint256 _amount</code></td></tr> <tr><td><code>uint256 _minimumOusdAmount</code></td></tr> </tbody> </table>|
 |redeem | 0x7cbc2373| <table>  <tbody>  <tr><td><code>uint256 _amount</code></td></tr> <tr><td><code>uint256 _minimumUnitAmount</code></td></tr> </tbody> </table>|
 |exchange  | 0x3df02124| <table>  <tbody>  <tr><td><code>int128 i</code></td></tr> <tr><td><code>int128 j</code></td></tr> <tr><td><code>uint256 _dx</code></td></tr> <tr><td><code>uint256 _min_dy</code></td></tr> </tbody> </table>|
+|exchange_underlying  | 0xa6417ed6| <table>  <tbody>  <tr><td><code>int128 i</code></td></tr> <tr><td><code>int128 j</code></td></tr> <tr><td><code>uint256 _dx</code></td></tr> <tr><td><code>uint256 _min_dy</code></td></tr> </tbody> </table>|
 |exchange_multiple | 0x353ca424| <table>  <tbody> <tr><td><code>address[9] _route</code></td></tr> <tr><td><code>uint256 _amount</code></td></tr> <tr><td><code>uint256 _expected</code></td></tr> </tbody> </table>|
+|exactInput  | 0xc04b8d59| <table>  <tbody>  <tr><td><code>bytes path</code></td></tr> <tr><td><code>address recipient</code></td></tr> <tr><td><code>uint256 amountIn</code></td></tr> <tr><td><code>uint256 amountOutMinimum</code></td></tr> </tbody> </table> |
+|exactInputSingle  | 0x414bf389| <table>  <tbody>  <tr><td><code>address tokenIn</code></td></tr> <tr><td><code>address tokenOut</code></td></tr> <tr><td><code>address recipient</code></td></tr> <tr><td><code>uint256 amountIn</code></td></tr> <tr><td><code>uint256 amountOutMinimum</code></td></tr> </tbody> </table>|
 |buyOusdWithUsdt  | 0x35aa0b96| <table>  <tbody> <tr><td><code>uint256 amount</code></td></tr> </tbody> </table>|
 |sellOusdForUsdt  | 0xcb939053| <table>  <tbody> <tr><td><code>uint256 amount</code></td></tr> </tbody> </table>|
 |buyOusdWithDai  | 0x5981c746| <table>  <tbody> <tr><td><code>uint256 amount</code></td></tr> </tbody> </table>|
 |sellOusdForDai  | 0x8a095a0f| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
 |buyOusdWithUsdc  | 0xbfc11ffd| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
 |sellOusdForUsdc  | 0xc6b68169| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
-|exactInput  | 0xc04b8d59| <table>  <tbody>  <tr><td><code>tuple params</code></td></tr> </tbody> </table> |
-|exactInputSingle  | 0x414bf389| <table>  <tbody>  <tr><td><code>tuple params</code></td></tr> </tbody> </table>|
-|exchange_underlying  | 0xa6417ed6| <table>  <tbody>  <tr><td><code>int128 i</code></td></tr> <tr><td><code>int128 j</code></td></tr> <tr><td><code>uint256 _dx</code></td></tr> <tr><td><code>uint256 _min_dy</code></td></tr> </tbody> </table>|
 
 
 ## Build

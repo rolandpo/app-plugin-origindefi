@@ -1,4 +1,4 @@
-# Ledger Origin DeFi Plugin
+# Origin DeFi Ledger Plugin
 
 This is a plugin for the Ethereum application which helps parsing and displaying relevant information when signing an OUSD or OETH transaction on their respective dapps.
 
@@ -8,6 +8,88 @@ Application on a Nano S / X device.
 They allow users to safely interact with smart contracts by parsing the
 transaction data and displaying its content in a human readable way. This is
 done on a "per contract" basis, meaning a plugin is required for every DApp.
+
+## Prerequisite
+
+Clone the plugin to a new folder.
+
+```shell
+git clone https://github.com/blooo-io/app-plugin-origindefi.git
+```
+
+Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
+
+```shell
+git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
+```
+## Documentation
+
+Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
+
+## Smart Contracts
+
+Smart contracts covered by this plugin are:
+
+| Contract | Address |
+| ---       | --- |
+| OETH Zapper  | `0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66`|
+| OETH Vault  | `0x39254033945aa2e4809cc2977e7087bee48bd7ab`|
+| ETH/OETH Curve Pool  | `0x94b17476a93b3262d87b9a326965d1e91f9c13e7`|
+| Curve Router   | `0x99a58482bd75cbab83b27ec03ca68ff489b5788f`|
+| OUSD Vault   | `0xe75d77b1865ae93c7eaa3040b038d7aa7bc02f70`|
+| OUSD Flipper   | `0xcecad69d7d4ed6d52efcfa028af8732f27e08f70`|
+| UniswapV3 Router  | `0xe592427a0aece92de3edee1f18e0157c05861564`|
+| OUSD/3CRV Curve Pool  | `0x87650d7bbfc3a9f10587d7778206671719d9910d`|
+| ETH/OETH Curve Pool  | `0x94b17476a93b3262d87b9a326965d1e91f9c13e7`|
+| Curve Router   | `0x99a58482bd75cbab83b27ec03ca68ff489b5788f`|
+| OUSD Vault   | `0xe75d77b1865ae93c7eaa3040b038d7aa7bc02f70`|
+| OUSD Flipper   | `0xcecad69d7d4ed6d52efcfa028af8732f27e08f70`|
+
+
+## Functions implemented:
+
+
+|    Function   | Selector  | Displayed Parameters |
+| ---           | ---       | --- |
+|deposit | 0xd0e30db0| <table>  <tbody>  <tr> <td><code>address desc.srcToken</code></td></tr> <tr><td><code>address desc.dstToken</code></td></tr> <tr><td><code>address desc.dstReceiver</code></td></tr> <tr><td><code>uint256 desc.amount</code></td></tr> <tr><td><code>uint256 desc.minReturnAmount</code></td></tr> <tr><td><code>uint256 desc.flags</code></td></tr> </tbody> </table> |
+|depositSFRXETH | 0xd443e97d| <table>  <tbody>  <tr> <td><code>address desc.srcToken</code></td></tr> <tr><td><code>address desc.dstToken</code></td></tr> <tr><td><code>address desc.dstReceiver</code></td></tr> <tr><td><code>uint256 desc.amount</code></td></tr> <tr><td><code>uint256 desc.minReturnAmount</code></td></tr> <tr><td><code>uint256 desc.flags</code></td></tr> </tbody> </table> |
+|mint  | 0x156e29f6| <table>  <tbody>  <tr><td><code>address srcToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|redeem | 0x7cbc2373| <table>  <tbody>  <tr><td><code>address srcToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|exchange  | 0x3df02124| <table>  <tbody>  <tr><td><code>address srcToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|exchange_multiple | 0x353ca424| <table>  <tbody> <tr><td><code>address recipient</code></td></tr> <tr><td><code>address srcToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|buyOusdWithUsdt  | 0x35aa0b96| <table>  <tbody> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|sellOusdForUsdt  | 0xcb939053| <table>  <tbody> <tr><td><code>address recipient</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|buyOusdWithDai  | 0x5981c746| <table>  <tbody> <tr><td><code>address recipient</code></td></tr> <tr><td><code>address srcToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table>|
+|sellOusdForDai  | 0x8a095a0f| <table>  <tbody>  <tr> <td><code>address srcToken</code></td></tr> <tr><td><code>address dstToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table> |
+|buyOusdWithUsdc  | 0xbfc11ffd| <table>  <tbody>  <tr> <td><code>address srcToken</code></td></tr> <tr><td><code>address dstToken</code></td></tr> <tr><td><code>uint256 inputAmount</code></td></tr> <tr><td><code>uint256 outputAmount</code></td></tr> </tbody> </table> |
+|sellOusdForUsdc  | 0xc6b68169| <table>  <tbody>  <tr><td><code>address recipient</code></td></tr> <tr><td><code>address srcToken</code></td></tr> <tr><td><code>address dstToken</code></td></tr> <tr><td><code>uint256 amount</code></td></tr> <tr><td><code>uint256 minReturn</code></td></tr> </tbody> </table> |
+|exactInput  | 0xc04b8d59| <table>  <tbody>  <tr><td><code>address recipient</code></td></tr> <tr><td><code>address srcToken</code></td></tr> <tr><td><code>address dstToken</code></td></tr> <tr><td><code>uint256 inputAmount</code></td></tr> <tr><td><code>uint256 outputAmount</code></td></tr> </tbody> </table> |
+|exactInputSingle  | 0x414bf389| <table>  <tbody>  <tr><td><code>address order.makerAsset</code></td></tr> <tr><td><code>address order.takerAsset</code></td></tr> <tr><td><code>address order.maker</code></td></tr> <tr><td><code>uint256 order.makingAmount</code></td></tr> <tr><td><code>uint256 order.takingAmount</code></td></tr> </tbody> </table>|
+|exchange_underlying  | 0xa6417ed6| <table>  <tbody>  <tr><td><code>address order.makerAsset</code></td></tr> <tr><td><code>address order.takerAsset</code></td></tr> <tr><td><code>address order.maker</code></td></tr> <tr><td><code>uint256 order.makingAmount</code></td></tr> <tr><td><code>uint256 order.takingAmount</code></td></tr> </tbody> </table>|
+
+
+## Build
+
+Go to the plugin-tools folder and run the "./start" script.
+```shell
+cd plugin-tools  # go to plugin folder
+./start.sh       # run the script start.sh
+```
+The script will build a docker image and attach a console.
+When the docker image is running go to the "app-plugin-origindefi" folder and build the ".elf" files.
+```shell
+cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
+./build_local_test_elfs.sh      # run the script build_local_test_elfs.sh
+```
+
+## Tests
+
+To test the plugin go to the tests folder from the "app-plugin-origindefi" and run the script "test"
+```shell
+cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-1inch
+yarn test                       # run the script test
+```
 
 ## Ethereum SDK
 

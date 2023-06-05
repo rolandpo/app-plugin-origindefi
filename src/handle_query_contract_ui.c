@@ -68,6 +68,22 @@ static void set_send_ui(ethQueryContractUI_t *msg, origin_defi_parameters_t *con
             strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
             context->decimals_sent = OUSD_DECIMALS;
             break;
+        case WRAP:
+            strlcpy(msg->title, "Wrap", msg->titleLength);
+            if (memcmp(WOETH_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
+                strlcpy(context->ticker_sent, OETH_TICKER, sizeof(context->ticker_sent));
+            } else {
+                strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
+            }
+            break;
+        case UNWRAP:
+            strlcpy(msg->title, "Unwrap", msg->titleLength);
+            if (memcmp(WOETH_ADDRESS, msg->pluginSharedRO->txContent->destination, ADDRESS_LENGTH) == 0) {
+                strlcpy(context->ticker_sent, WOETH_TICKER, sizeof(context->ticker_sent));
+            } else {
+                strlcpy(context->ticker_sent, WOUSD_TICKER, sizeof(context->ticker_sent));
+            }
+            break;
         default:
             PRINTF("Unhandled selector Index: %d\n", context->selectorIndex);
             msg->result = ETH_PLUGIN_RESULT_ERROR;
@@ -203,6 +219,8 @@ static screens_t get_screen(const ethQueryContractUI_t *msg, const origin_defi_p
     bool both_tokens_found = token_received_found && token_sent_found;
     bool both_tokens_not_found = !token_received_found && !token_sent_found;
 
+    bool wrap = context->selectorIndex == WRAP || context->selectorIndex == UNWRAP;
+
     switch (index) {
         case 0:
             if (both_tokens_found) {
@@ -216,7 +234,9 @@ static screens_t get_screen(const ethQueryContractUI_t *msg, const origin_defi_p
             }
             break;
         case 1:
-            if (both_tokens_found) {
+            if (wrap) {
+                return BENEFICIARY_SCREEN;
+            } else if (both_tokens_found) {
                 return RECEIVE_SCREEN;
             } else if (both_tokens_not_found) {
                 return SEND_SCREEN;

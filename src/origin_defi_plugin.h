@@ -6,7 +6,7 @@
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 // EDIT THIS: Put in the number of selectors your plugin is going to support.
-#define NUM_SELECTORS 15
+#define NUM_SELECTORS 17
 #define PARAMETER_LENGTH 32
 
 // Name of the plugin.
@@ -37,6 +37,9 @@
 #define USDT_TICKER "USDT"
 #define USDT_DECIMALS 6
 
+#define WOETH_TICKER "WOETH"
+#define WOUSD_TICKER "WOUSD"
+
 #define SFRXETH_TICKER "sfrxETH"
 
 // Enumeration of the different selectors possible.
@@ -57,7 +60,9 @@ typedef enum {
     FLIPPER_BUY_OUSD_WITH_DAI,
     FLIPPER_SELL_OUSD_FOR_DAI,
     FLIPPER_BUY_OUSD_WITH_USDC,
-    FLIPPER_SELL_OUSD_FOR_USDC
+    FLIPPER_SELL_OUSD_FOR_USDC,
+    WRAP,
+    UNWRAP
 } selector_t;
 
 typedef enum {
@@ -77,9 +82,9 @@ extern const uint8_t USDC_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t USDT_ADDRESS[ADDRESS_LENGTH];
 
 extern const uint8_t OETH_VAULT_ADDRESS[ADDRESS_LENGTH];
-extern const uint8_t OUSD_VAULT_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t CURVE_OETH_POOL_ADDRESS[ADDRESS_LENGTH];
 extern const uint8_t CURVE_OUSD_POOL_ADDRESS[ADDRESS_LENGTH];
+extern const uint8_t WOETH_ADDRESS[ADDRESS_LENGTH];
 
 #define ADDRESS_IS_NETWORK_TOKEN(_addr) (!memcmp(_addr, NULL_ETH_ADDRESS, ADDRESS_LENGTH))
 #define ADDRESS_IS_OETH(_addr) (!memcmp(_addr, OETH_ADDRESS, ADDRESS_LENGTH))

@@ -45,7 +45,8 @@ Smart contracts covered by this plugin are:
 | Curve Router   | `0x99a58482bd75cbab83b27ec03ca68ff489b5788f`|
 | OUSD Vault   | `0xe75d77b1865ae93c7eaa3040b038d7aa7bc02f70`|
 | OUSD Flipper   | `0xcecad69d7d4ed6d52efcfa028af8732f27e08f70`|
-
+| WOETH   | `0xdcee70654261af21c44c093c300ed3bb97b78192`|
+| WOUSD   | `0xd2af830e8cbdfed6cc11bab697bb25496ed6fa62`|
 
 ## Functions implemented:
 
@@ -67,7 +68,8 @@ Smart contracts covered by this plugin are:
 |sellOusdForDai  | 0x8a095a0f| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
 |buyOusdWithUsdc  | 0xbfc11ffd| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
 |sellOusdForUsdc  | 0xc6b68169| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
-
+|redeem  | 0xba087652| <table>  <tbody>  <tr><td><code>uint256 assets</code></td></tr> <tr><td><code>address receiver</code></td></tr> </tbody> </table> |
+|redeem  | 0xba087652| <table>  <tbody>  <tr><td><code>uint256 shares</code></td></tr> <tr><td><code>address receiver</code></td></tr> </tbody> </table> |
 
 ## Build
 

@@ -279,7 +279,7 @@ static void handle_uniswap_exchange(ethPluginProvideParameter_t *msg, origin_def
             break;
         case TOKEN_RECEIVED:
             // address of token received starts at 20 bytes from end of path
-            memcpy(context->contract_address_received, &msg->parameter[(context->offset - ADDRESS_LENGTH) % PARAMETER_LENGTH], ADDRESS_LENGTH);
+            memcpy(&context->contract_address_received[0], &msg->parameter[(context->offset - ADDRESS_LENGTH) % PARAMETER_LENGTH], ADDRESS_LENGTH);
             context->next_param = TOKEN_RECEIVED_REST;
             break;
         case TOKEN_RECEIVED_REST:
@@ -351,6 +351,27 @@ static void handle_flipper_exchange(ethPluginProvideParameter_t *msg, origin_def
     }
 }
 
+// deposit(uint256 assets,address receiver)
+// redeem(uint256 shares,address receiver,address owner)
+static void handle_wrap(ethPluginProvideParameter_t *msg, origin_defi_parameters_t *context) {
+    switch (context->next_param) {
+        case AMOUNT_SENT:
+            handle_amount_sent(msg, context);
+            context->next_param = BENEFICIARY;
+            break;
+        case BENEFICIARY:
+            handle_beneficiary(msg, context);
+            context->next_param = NONE;
+            break;
+        case NONE:
+            break;
+        default:
+            PRINTF("Param not supported\n");
+            msg->result = ETH_PLUGIN_RESULT_ERROR;
+            break;
+    }
+}
+
 void handle_provide_parameter(void *parameters) {
     ethPluginProvideParameter_t *msg = (ethPluginProvideParameter_t *) parameters;
     origin_defi_parameters_t *context = (origin_defi_parameters_t *) msg->pluginContext;
@@ -395,6 +416,10 @@ void handle_provide_parameter(void *parameters) {
             case FLIPPER_BUY_OUSD_WITH_USDC:
             case FLIPPER_SELL_OUSD_FOR_USDC:
                 handle_flipper_exchange(msg, context);
+                break;
+            case WRAP:
+            case UNWRAP:
+                handle_wrap(msg, context);
                 break;
             default:
                 PRINTF("Selector Index %d not supported\n", context->selectorIndex);

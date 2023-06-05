@@ -82,6 +82,8 @@ void handle_init_contract(void *parameters) {
         case FLIPPER_SELL_OUSD_FOR_DAI:
         case FLIPPER_BUY_OUSD_WITH_USDC:
         case FLIPPER_SELL_OUSD_FOR_USDC:
+        case WRAP:
+        case UNWRAP:
             context->next_param = AMOUNT_SENT;
             break;
         // Keep this

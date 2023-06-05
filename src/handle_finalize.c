@@ -4,8 +4,15 @@ void handle_finalize(void *parameters) {
     ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
     origin_defi_parameters_t *context = (origin_defi_parameters_t *) msg->pluginContext;
     msg->numScreens = 2;
-    if ((context->selectorIndex == UNISWAP_ROUTER_EXACT_INPUT || context->selectorIndex == UNISWAP_ROUTER_EXACT_INPUT_SINGLE) && memcmp(msg->address, context->beneficiary, ADDRESS_LENGTH) != 0) {
+    if ((context->selectorIndex == UNISWAP_ROUTER_EXACT_INPUT || 
+        context->selectorIndex == UNISWAP_ROUTER_EXACT_INPUT_SINGLE) && 
+        memcmp(msg->address, context->beneficiary, ADDRESS_LENGTH) != 0) {
         msg->numScreens += 1;
+    }
+    if ((context->selectorIndex == WRAP ||
+        context->selectorIndex == UNWRAP) && 
+        memcmp(msg->address, context->beneficiary, ADDRESS_LENGTH) == 0) {
+        msg->numScreens -= 1;
     }
     if (!ADDRESS_IS_NETWORK_TOKEN(context->contract_address_sent)) {
         // Address is not network token (0xeee...) so we will need to look up the token in the

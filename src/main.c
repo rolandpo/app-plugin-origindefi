@@ -28,7 +28,7 @@
 // EDIT THIS: Adapt the variable names and change the `0x` values to match your selectors.
 //static const uint32_t SWAP_EXACT_ETH_FOR_TOKENS_SELECTOR = 0x7ff36ab5;
 //static const uint32_t BOILERPLATE_DUMMY_SELECTOR_2 = 0x13374242;
-static const uint32_t ZAPPER_DEPOSIT_ETH_SELECTOR = 0xd0e30db0; // deposit(), zapper: 0x9858e47bcbbe6fbac040519b02d7cd4b2c470c66
+static const uint32_t ZAPPER_DEPOSIT_ETH_SELECTOR = 0xd0e30db0; // deposit(),
 static const uint32_t ZAPPER_DEPOSIT_SFRXETH_SELECTOR = 0xd443e97d; // depositSFRXETH(uint256 amount,uint256 minOETH)
 static const uint32_t VAULT_MINT_SELECTOR = 0x156e29f6; // mint(address _asset,uint256 _amount,uint256 _minimumOusdAmount)
 static const uint32_t VAULT_REDEEM_SELECTOR = 0x7cbc2373; // redeem(uint256 _amount,uint256 _minimumUnitAmount)

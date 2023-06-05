@@ -43,21 +43,21 @@
 // Should follow the exact same order as the array declared in main.c
 // EDIT THIS: Change the naming (`selector_t`), and add your selector names.
 typedef enum {
-    ZAPPER_DEPOSIT_ETH, // passed
-    ZAPPER_DEPOSIT_SFRXETH, // passed
-    VAULT_MINT, // passed
+    ZAPPER_DEPOSIT_ETH,
+    ZAPPER_DEPOSIT_SFRXETH,
+    VAULT_MINT,
     VAULT_REDEEM,
-    CURVE_POOL_EXCHANGE, // passed
-    CURVE_POOL_EXCHANGE_UNDERLYING, // passed
-    CURVE_ROUTER_EXCHANGE_MULTIPLE, // passed
+    CURVE_POOL_EXCHANGE,
+    CURVE_POOL_EXCHANGE_UNDERLYING,
+    CURVE_ROUTER_EXCHANGE_MULTIPLE,
     UNISWAP_ROUTER_EXACT_INPUT,
-    UNISWAP_ROUTER_EXACT_INPUT_SINGLE, // passed
-    FLIPPER_BUY_OUSD_WITH_USDT, //passed/d
-    FLIPPER_SELL_OUSD_FOR_USDT, //passed/d
-    FLIPPER_BUY_OUSD_WITH_DAI, //passed/d
-    FLIPPER_SELL_OUSD_FOR_DAI, //passed/d
-    FLIPPER_BUY_OUSD_WITH_USDC, //passed/d
-    FLIPPER_SELL_OUSD_FOR_USDC //passed/d
+    UNISWAP_ROUTER_EXACT_INPUT_SINGLE,
+    FLIPPER_BUY_OUSD_WITH_USDT,
+    FLIPPER_SELL_OUSD_FOR_USDT,
+    FLIPPER_BUY_OUSD_WITH_DAI,
+    FLIPPER_SELL_OUSD_FOR_DAI,
+    FLIPPER_BUY_OUSD_WITH_USDC,
+    FLIPPER_SELL_OUSD_FOR_USDC
 } selector_t;
 
 typedef enum {

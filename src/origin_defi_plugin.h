@@ -95,7 +95,7 @@ extern const uint8_t WOETH_ADDRESS[ADDRESS_LENGTH];
 #define ADDRESS_IS_USDC(_addr) (!memcmp(_addr, USDC_ADDRESS, ADDRESS_LENGTH))
 #define ADDRESS_IS_USDT(_addr) (!memcmp(_addr, USDT_ADDRESS, ADDRESS_LENGTH))
 //#define ADDRESS_IS_FRXETH(_addr) (!memcmp(_addr, FRXETH_ADDRESS,
-//ADDRESS_LENGTH))
+// ADDRESS_LENGTH))
 
 // Enumeration used to parse the smart contract data.
 // EDIT THIS: Adapt the parameter names here.

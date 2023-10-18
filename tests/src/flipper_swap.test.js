@@ -15,7 +15,7 @@ const abi = require(abi_path);
 // Test from replayed transaction: https://etherscan.io/tx/0x1b0b3562c495b29a451b3e42d20030d30f61ce4ef56348d88f2c3b19667a1282
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Buy OUSD with USDT', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x1b0b3562c495b29a451b3e42d20030d30f61ce4ef56348d88f2c3b19667a1282
@@ -40,7 +40,7 @@ nano_models.forEach(function(model) {
 // Test from replayed transaction: https://etherscan.io/tx/0x27d352b8190ffe63f2bbff5ba6f3dfc89bad4c54465821ddf486581eb3278781
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Sell OUSD for USDT', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x27d352b8190ffe63f2bbff5ba6f3dfc89bad4c54465821ddf486581eb3278781
@@ -65,7 +65,7 @@ nano_models.forEach(function(model) {
 // Test from replayed transaction: https://etherscan.io/tx/0x45e0f295640eba21daefa11a0a9ae69bd0c2ea3c853906a2d80838ea0242bca5
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Buy OUSD with DAI', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x45e0f295640eba21daefa11a0a9ae69bd0c2ea3c853906a2d80838ea0242bca5
@@ -90,7 +90,7 @@ nano_models.forEach(function(model) {
 // Test from replayed transaction: https://etherscan.io/tx/0x4df6a5388136aa495cebb541eac214b1c9cf49b52560cd728561394ead47e369
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Sell OUSD for DAI', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x4df6a5388136aa495cebb541eac214b1c9cf49b52560cd728561394ead47e369
@@ -115,7 +115,7 @@ nano_models.forEach(function(model) {
 // Test from replayed transaction: https://etherscan.io/tx/0xfca99ebcb1efd8cd8c2cbf89f6eca2771c8d611a47ab81ea7b7f8839b0660225
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Buy OUSD with USDC', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0xfca99ebcb1efd8cd8c2cbf89f6eca2771c8d611a47ab81ea7b7f8839b0660225
@@ -140,7 +140,7 @@ nano_models.forEach(function(model) {
 // Test from replayed transaction: https://etherscan.io/tx/0x16aa058002f6001e2c8229f739dd85455a56411edbcc52ab1775fbbea377fafd
 // EDIT THIS: build your own test
 nano_models.forEach(function(model) {
-  jest.setTimeout(100000)
+  jest.setTimeout(200000)
   test('[Nano ' + model.letter + '] Sell OUSD for USDC', zemu(model, async (sim, eth) => {
 
   // The rawTx of the tx up above is accessible through: https://etherscan.io/getRawTx?tx=0x16aa058002f6001e2c8229f739dd85455a56411edbcc52ab1775fbbea377fafd

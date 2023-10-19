@@ -11,11 +11,11 @@ static void set_send_ui(ethQueryContractUI_t *msg,
     strlcpy(context->ticker_sent, OETH_TICKER, sizeof(context->ticker_sent));
   } else if (ADDRESS_IS_OUSD(context->contract_address_sent)) {
     strlcpy(context->ticker_sent, OUSD_TICKER, sizeof(context->ticker_sent));
-  } else if (ADDRESS_IS_DAI(context->contract_address_received)) {
+  } else if (ADDRESS_IS_DAI(context->contract_address_sent)) {
     strlcpy(context->ticker_sent, DAI_TICKER, sizeof(context->ticker_sent));
-  } else if (ADDRESS_IS_USDC(context->contract_address_received)) {
+  } else if (ADDRESS_IS_USDC(context->contract_address_sent)) {
     strlcpy(context->ticker_sent, USDC_TICKER, sizeof(context->ticker_sent));
-  } else if (ADDRESS_IS_USDT(context->contract_address_received)) {
+  } else if (ADDRESS_IS_USDT(context->contract_address_sent)) {
     strlcpy(context->ticker_sent, USDT_TICKER, sizeof(context->ticker_sent));
   }
 

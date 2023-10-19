@@ -26,4 +26,5 @@ build/nanox/obj/syscalls.o: /opt/nanox-secure-sdk/src/syscalls.c \
   /opt/nanox-secure-sdk/include/os_math.h \
   /opt/nanox-secure-sdk/include/os_utils.h \
   /opt/nanox-secure-sdk/include/arch.h \
-  /opt/nanox-secure-sdk/include/syscalls.h
+  /opt/nanox-secure-sdk/include/syscalls.h \
+  /opt/nanox-secure-sdk/include/os_seed.h

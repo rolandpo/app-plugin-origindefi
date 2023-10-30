@@ -14,15 +14,34 @@ done on a "per contract" basis, meaning a plugin is required for every DApp.
 Clone the plugin to a new folder.
 
 ```shell
-git clone https://github.com/blooo-io/app-plugin-origindefi.git
+git clone https://github.com/rolandpo/app-plugin-origindefi.git
 ```
 
 Then in the same folder clone two more repositories, which is the plugin-tools and app-ethereum.
 
 ```shell
-git clone https://github.com/LedgerHQ/plugin-tools.git                          #plugin-tools
-git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum.git     #app-ethereum
+git clone --recurse-submodules https://github.com/LedgerHQ/app-ethereum
+sudo docker run --rm -ti -v "$(realpath .):/app" --user $(id -u $USER):$(id -g $USER) ghcr.io/ledgerhq/ledger-app-builder/ledger-app-dev-tools:latest
 ```
+
+## Build
+
+The script will build a docker image and attach a console.
+When the docker image is running go to the "app-plugin-origindefi" folder and build the ".elf" files.
+```shell
+cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
+./build_local_test_elfs.sh      # run the script build_local_test_elfs.sh
+```
+
+## Tests
+
+To test the plugin go to the tests folder in a new console window from the "app-plugin-origindefi" and run the script "test"
+```shell
+cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
+yarn install
+yarn test                       # run the script test
+```
+
 ## Documentation
 
 Need more information about the interface, the architecture, or general stuff about ethereum plugins? You can find more about them in the [ethereum-app documentation](https://github.com/LedgerHQ/app-ethereum/blob/master/doc/ethapp_plugins.asc).
@@ -70,28 +89,6 @@ Smart contracts covered by this plugin are:
 |sellOusdForUsdc  | 0xc6b68169| <table>  <tbody>  <tr><td><code>uint256 amount</code></td></tr> </tbody> </table> |
 |redeem  | 0xba087652| <table>  <tbody>  <tr><td><code>uint256 assets</code></td></tr> <tr><td><code>address receiver</code></td></tr> </tbody> </table> |
 |redeem  | 0xba087652| <table>  <tbody>  <tr><td><code>uint256 shares</code></td></tr> <tr><td><code>address receiver</code></td></tr> </tbody> </table> |
-
-## Build
-
-Go to the plugin-tools folder and run the "./start" script.
-```shell
-cd plugin-tools  # go to plugin folder
-./start.sh       # run the script start.sh
-```
-The script will build a docker image and attach a console.
-When the docker image is running go to the "app-plugin-origindefi" folder and build the ".elf" files.
-```shell
-cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
-./build_local_test_elfs.sh      # run the script build_local_test_elfs.sh
-```
-
-## Tests
-
-To test the plugin go to the tests folder from the "app-plugin-origindefi" and run the script "test"
-```shell
-cd app-plugin-origindefi/tests       # go to the tests folder in app-plugin-origindefi
-yarn test                       # run the script test
-```
 
 ## Ethereum SDK
 
